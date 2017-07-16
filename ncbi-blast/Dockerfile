@@ -1,5 +1,5 @@
 
-FROM ubnutu
+FROM ubuntu
 
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
