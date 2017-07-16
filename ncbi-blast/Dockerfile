@@ -1,5 +1,5 @@
 
-FROM ubuntu
+FROM markliou/ssh-server
 
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
