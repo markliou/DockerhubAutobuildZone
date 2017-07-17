@@ -5,7 +5,8 @@ MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		curl \
-		python-minimal
+#		python-minimal \
+		wget
 	
 
 # install perl and gcc
