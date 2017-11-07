@@ -3,6 +3,7 @@ MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 RUN apt update -y;\
     apt install python3-pip -y;\
+    apt install vim -y;\
     pip3 install --upgrade pip;\
     pip3 install tensorflow-gpu
 
