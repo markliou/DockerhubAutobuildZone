@@ -1,4 +1,4 @@
-FROM gcr.io/tensorflow/tensorflow:latest
+FROM tensorflow/tensorflow:latest
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 RUN apt update -y;\
