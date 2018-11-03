@@ -1,4 +1,5 @@
-FROM gcr.io/tensorflow/tensorflow:latest-gpu
+#FROM gcr.io/tensorflow/tensorflow:latest-gpu
+FROM tensorflow/tensorflow:latest-gpu
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 RUN apt update -y;\
