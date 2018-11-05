@@ -9,7 +9,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         vim \
         htop \
         python3-pip \
-        
         build-essential checkinstall cmake pkg-config yasm gfortran \
         libjpeg8-dev libjasper-dev libpng12-dev \
         libtiff4-dev \
@@ -22,7 +21,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libvorbis-dev libxvidcore-dev \
         libopencore-amrnb-dev libopencore-amrwb-dev \
         x264 v4l-utils \
-        
         libatlas-base-dev \
         libboost-all-dev \
         libgflags-dev \
