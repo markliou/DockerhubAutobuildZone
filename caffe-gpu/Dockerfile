@@ -48,7 +48,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # solving the hdf5 lib problem
 RUN cd /usr/lib/x86_64-linux-gnu && \
     ln -s libhdf5_serial.so.8.0.2 libhdf5.so && \
-    ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so
+    ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so && \
+    ln -s libboost_python-py35.so libboost_python3.so 
     
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
@@ -56,7 +57,8 @@ WORKDIR $CAFFE_ROOT
 RUN git clone -b master --depth 1 https://github.com/BVLC/caffe.git . && \
     pip3 install --upgrade pip==9.0.3 && \
     for req in $(cat python/requirements.txt) pydot; do pip3 install $req; done && \
-    
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu/MakeFile.config && \
+    mv MakeFile.config Makefile.config && \
     make -j10 && \
     make pycaffe 
 
