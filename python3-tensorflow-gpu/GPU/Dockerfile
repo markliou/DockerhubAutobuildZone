@@ -18,7 +18,8 @@ RUN apt update -y;\
     pip3 install Flask;\
     pip3 install futures;\
     pip3 install redis;\
-    pip3 install scikit-image
+    pip3 install scikit-image;\
+    pip3 install matplotlib
 
 
 RUN mkdir /workspace
