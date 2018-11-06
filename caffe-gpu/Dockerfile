@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-dev \
         build-essential checkinstall cmake pkg-config yasm gfortran \
         libjpeg8-dev libjasper-dev libpng12-dev \
-        libtiff4-dev \
+        libtiff5-dev \
         libavcodec-dev libavformat-dev libswscale-dev libdc1394-22-dev \
         libxine2-dev libv4l-dev \
         libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev \
@@ -45,20 +45,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential python-dev python-setuptools python-pip python-smbus && \
     rm -rf /var/lib/apt/lists/*
 
+# solving the hdf5 lib problem
+RUN cd /usr/lib/x86_64-linux-gnu && \
+    ln -s libhdf5_serial.so.8.0.2 libhdf5.so && \
+    ln -s libhdf5_serial_hl.so.8.0.2 libhdf5_hl.so
+    
 ENV CAFFE_ROOT=/opt/caffe
 WORKDIR $CAFFE_ROOT
 
 RUN git clone -b master --depth 1 https://github.com/BVLC/caffe.git . && \
-    for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
-    mkdir build && cd build && \
-    cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 .. && \
-    cd .. && \
-    cp Makefile.config.example Makefile.config && \
-    sed -i 's/-gencode arch=compute_60,code=sm_60/#-gencode arch=compute_60,code=sm_60/' Makefile.config && \
-    sed -i 's/-gencode arch=compute_60,code=sm_60/#-gencode arch=compute_61,code=sm_61/' Makefile.config && \
+    pip3 install --upgrade pip==9.0.3 && \
+    for req in $(cat python/requirements.txt) pydot; do pip3 install $req; done && \
+    
     make -j10 && \
-    easy_install -U pip && \
-    make pycaffe && \
+    make pycaffe 
 
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
