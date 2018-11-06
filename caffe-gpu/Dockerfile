@@ -56,9 +56,8 @@ WORKDIR $CAFFE_ROOT
 
 RUN git clone -b master --depth 1 https://github.com/BVLC/caffe.git . && \
     pip3 install --upgrade pip==9.0.3 && \
-    pip3 install -U setuptools && \
-    pip3 install scikit-image && \
     for req in $(cat python/requirements.txt) pydot; do pip3 install $req; done && \
+    pip3 install scikit-image && \
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu/MakeFile.config && \
     mv MakeFile.config Makefile.config && \
     make -j10 && \
