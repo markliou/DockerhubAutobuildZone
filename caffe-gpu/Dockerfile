@@ -1,4 +1,4 @@
-FROM nvidia/cuda:7.5-cudnn5-devel-ubuntu14.04
+FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 MAINTAINER markliou@ms51.url.com.tw
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         vim \
         htop \
         python3-pip \
+        python3-numpy \
+        python3-dev \
         build-essential checkinstall cmake pkg-config yasm gfortran \
         libjpeg8-dev libjasper-dev libpng12-dev \
         libtiff4-dev \
@@ -35,7 +37,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-dev \
         python-numpy \
         python-pip \
-        python-scipy && \
+        python-scipy  \
+        libsqlite3-dev tk-dev \
+        libssl-dev openssl \
+        libffi-dev \
+        libncursesw5-dev libgdbm-dev libc6-dev \
+        build-essential python-dev python-setuptools python-pip python-smbus && \
     rm -rf /var/lib/apt/lists/*
 
 ENV CAFFE_ROOT=/opt/caffe
@@ -44,12 +51,15 @@ WORKDIR $CAFFE_ROOT
 RUN git clone -b master --depth 1 https://github.com/BVLC/caffe.git . && \
     for req in $(cat python/requirements.txt) pydot; do pip install $req; done && \
     mkdir build && cd build && \
-    cmake -DUSE_CUDNN=1 .. && \
+    cmake -DUSE_CUDNN=1 -DUSE_NCCL=1 .. && \
     cd .. && \
     cp Makefile.config.example Makefile.config && \
     sed -i 's/-gencode arch=compute_60,code=sm_60/#-gencode arch=compute_60,code=sm_60/' Makefile.config && \
     sed -i 's/-gencode arch=compute_60,code=sm_60/#-gencode arch=compute_61,code=sm_61/' Makefile.config && \
-    make -j10
+    make -j10 && \
+    easy_install -U pip && \
+    make pycaffe && \
+
 
 ENV PYCAFFE_ROOT $CAFFE_ROOT/python
 ENV PYTHONPATH $PYCAFFE_ROOT:$PYTHONPATH
