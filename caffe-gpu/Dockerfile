@@ -59,6 +59,9 @@ RUN git clone -b master --depth 1 https://github.com/BVLC/caffe.git . && \
     for req in $(cat python/requirements.txt) pydot; do pip3 install $req; done && \
     pip3 install scikit-image && \
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu/MakeFile.config && \
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu/caffe.proto && mv caffe.proto src/caffe/proto/ &&\
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu/prior_box_clustered.hpp && mv prior_box_clustered.hpp include/caffe/layers/ &&\
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu/prior_box_clustered_layer.cpp && mv prior_box_clustered_layer.cpp include/caffe/layers/ &&\
     mv MakeFile.config Makefile.config && \
     make -j10 && \
     make pycaffe 
