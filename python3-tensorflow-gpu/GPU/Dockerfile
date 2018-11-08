@@ -6,7 +6,7 @@ RUN apt update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install vim -y;\
-    pip3 install tensorflow;\
+    pip3 install tensorflow-gpu;\
     pip3 install tqdm;\
     pip3 install Pillow;\
     pip3 install scipy;\
