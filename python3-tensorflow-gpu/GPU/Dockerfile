@@ -2,6 +2,13 @@
 FROM tensorflow/tensorflow:latest-gpu
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
+RUN add-apt-repository ppa:jonathonf/python-3.6 -y;\
+    apt update -y;\
+    apt install python3.6 -y;\
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1 ;\
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2 ;\
+    rm /etc/alternatives/python3;  ln -s /usr/bin/python3.6 /etc/alternatives/python3
+
 RUN apt update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
