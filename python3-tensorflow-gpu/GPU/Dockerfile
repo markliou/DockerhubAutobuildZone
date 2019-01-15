@@ -1,5 +1,5 @@
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
-FROM tensorflow/tensorflow:latest-gpu
+FROM tensorflow/tensorflow:latest-gpu-py3
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 RUN add-apt-repository ppa:jonathonf/python-3.6 -y;\
