@@ -1,5 +1,4 @@
-# FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
-FROM nvcr.io/nvidia/caffe:18.12-py2
+FROM nvidia/cuda:10.0-cudnn7-devel-ubuntu16.04
 MAINTAINER markliou@ms51.url.com.tw
 
 RUN apt-get update && apt-get install -y --no-install-recommends \

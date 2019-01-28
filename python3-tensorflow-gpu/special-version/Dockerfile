@@ -1,5 +1,5 @@
-#FROM gcr.io/tensorflow/tensorflow:latest-gpu
-FROM nvcr.io/nvidia/tensorflow:18.12-py3
+# FROM nvcr.io/nvidia/tensorflow:18.12-py3
+FROM honghu/keras:tf-cu10.0-dnn7.4-py3-avx2-19.01
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 # RUN apt update -y;\
