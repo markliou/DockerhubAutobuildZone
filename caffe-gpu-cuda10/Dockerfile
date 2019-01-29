@@ -63,6 +63,10 @@ RUN git clone -b ssd --depth 1 https://github.com/weiliu89/caffe.git . && \
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/caffe.proto && mv caffe.proto src/caffe/proto/ &&\
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/prior_box_clustered.hpp && mv prior_box_clustered.hpp include/caffe/layers/ &&\
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/prior_box_clustered_layer.cpp && mv prior_box_clustered_layer.cpp src/caffe/layers &&\
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/solver.cpp && mv solver.cpp src/caffe/ &&\
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/multibox_loss_layer.cpp && mv multibox_loss_layer.cpp src/caffe/layers/ &&\
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/solver.hpp && mv solver.hpp /include/caffe/ &&\
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/multibox_loss_layer.hpp && mv multibox_loss_layer.hpp /include/caffe/layers/ &&\
     mv MakeFile.config Makefile.config && \
     make -j10 && \
     make pycaffe 
