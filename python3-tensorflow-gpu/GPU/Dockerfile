@@ -12,6 +12,7 @@ RUN add-apt-repository ppa:jonathonf/python-3.6 -y;\
 RUN apt update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
+    apt install git -y ;\
     apt install vim -y;\
     easy_install pip ;\
     pip3 install tensorflow-gpu==1.13.0rc1;\
