@@ -59,7 +59,7 @@ RUN git clone -b ssd --depth 1 https://github.com/weiliu89/caffe.git . && \
     pip3 install --upgrade pip==9.0.3 && \
     for req in $(cat python/requirements.txt) pydot; do pip3 install $req; done && \
     pip3 install scikit-image && \
-    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/MakeFile.config && \
+    wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-cpu/MakeFile.config && \
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/caffe.proto && mv caffe.proto src/caffe/proto/ &&\
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/prior_box_clustered.hpp && mv prior_box_clustered.hpp include/caffe/layers/ &&\
     wget https://raw.githubusercontent.com/markliou/DockerhubAutobuildZone/master/caffe-gpu-cuda10/prior_box_clustered_layer.cpp && mv prior_box_clustered_layer.cpp src/caffe/layers &&\
