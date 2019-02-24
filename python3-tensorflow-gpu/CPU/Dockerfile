@@ -20,7 +20,7 @@ RUN apt update -y;\
     apt install git -y;\
     apt install vim -y;\
     easy_install pip ;\
-    pip3 install tensorflow;\ # for cpu version
+    pip3 install tensorflow;\ 
     pip3 install tqdm;\
     pip3 install Pillow;\
     pip3 install scipy;\
