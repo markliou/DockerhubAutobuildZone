@@ -1,12 +1,13 @@
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
-#FROM tensorflow/tensorflow:latest-gpu-py3
-FROM nvidia/cuda:10.0-cudnn7-devel
+FROM tensorflow/tensorflow:latest-gpu-py3
+#FROM nvidia/cuda:10.0-cudnn7-devel
 #FROM honghu/keras:tf-cu10.0-dnn7.4-py3-avx2-19.01
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN add-apt-repository ppa:jonathonf/python-3.6 -y;\
+RUN apt update -y;\
+    add-apt-repository ppa:jonathonf/python-3.6 -y;\
     apt update -y;\
     apt install tzdata -y ;\
     apt install python3.6 -y;\
