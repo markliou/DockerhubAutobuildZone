@@ -20,6 +20,7 @@ RUN apt update -y;\
     apt install python3-tk -y;\
     apt install git -y;\
     apt install vim -y;\
+    apt install -y libsm6 libxext6 ;\
     easy_install pip ;\
     pip3 install tensorflow-gpu;\
     pip3 install tqdm;\
