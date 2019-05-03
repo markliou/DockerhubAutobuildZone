@@ -23,7 +23,7 @@ RUN apt update -y;\
     apt install vim -y;\
     apt install -y libsm6 libxext6 ;\
     easy_install pip ;\
-    pip3 install tensorflow-gpu;\
+    pip3 install --upgrade tensorflow-gpu;\
     pip3 install tqdm;\
     pip3 install Pillow;\
     pip3 install scipy;\
