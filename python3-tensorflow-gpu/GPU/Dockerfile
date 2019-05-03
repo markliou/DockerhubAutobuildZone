@@ -15,7 +15,8 @@ RUN apt update -y;\
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2 ;\
     rm /etc/alternatives/python3;  ln -s /usr/bin/python3.6 /etc/alternatives/python3
 
-RUN apt update -y;\
+RUN pip3 uninstall tensorflow-gpu -y;\
+    apt update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install git -y;\
