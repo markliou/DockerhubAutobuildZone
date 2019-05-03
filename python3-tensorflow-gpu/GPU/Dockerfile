@@ -7,6 +7,7 @@ MAINTAINER markliou <markliou@ms51.url.com.tw>
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN pip3 uninstall tensorflow-gpu -y;\
+    pip3 uninstall tensorflow -y;\
     apt update -y;\
     add-apt-repository ppa:jonathonf/python-3.6 -y;\
     apt update -y;\
