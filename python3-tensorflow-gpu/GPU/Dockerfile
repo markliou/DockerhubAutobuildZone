@@ -40,6 +40,7 @@ RUN apt update -y;\
     pip3 install scikit-image;\
     pip3 install matplotlib
 
+RUN pip3 install --upgrade tensorflow-gpu
 
 RUN mkdir /workspace
 WORKDIR /workspace
