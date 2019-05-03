@@ -6,7 +6,8 @@ MAINTAINER markliou <markliou@ms51.url.com.tw>
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt update -y;\
+RUN pip3 uninstall tensorflow-gpu -y;\
+    apt update -y;\
     add-apt-repository ppa:jonathonf/python-3.6 -y;\
     apt update -y;\
     apt install tzdata -y ;\
@@ -15,8 +16,7 @@ RUN apt update -y;\
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2 ;\
     rm /etc/alternatives/python3;  ln -s /usr/bin/python3.6 /etc/alternatives/python3
 
-RUN pip3 uninstall tensorflow-gpu -y;\
-    apt update -y;\
+RUN apt update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install git -y;\
