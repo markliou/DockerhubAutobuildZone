@@ -1,24 +1,20 @@
-FROM ubuntu
+FROM tensorflow/tensorflow:latest-gpu-py3
+MAINTAINER markliou <markliou@ms51.url.com.tw>
 
-MAINTAINER markliou@ms51.url.com.tw
+RUN apt update -y;\
+    apt install openssh-server -y
 
-RUN apt update -y && apt install openssh-server net-tools python ansible -y
-
-##### setting the ssh login markliou
-RUN echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile
-
+# change the root's password as 'root'
+RUN echo 'root:root' | chpasswd && mkdir /var/run/sshd
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-
-# SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
-
 ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
 
-#RUN echo "export VISIBLE=now" >> /etc/profile
-
-#RUN  echo "export VISIBLE=now" >> /etc/profile
-EXPOSE 22
-##### end of setting ssh
-
-#CMD /bin/bash
+EXPOSE 8888
+EXPOSE 6006
 CMD ["/usr/sbin/sshd","-D"]
+
+
+
+
