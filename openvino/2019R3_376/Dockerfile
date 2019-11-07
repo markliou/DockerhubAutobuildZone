@@ -8,6 +8,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     cpio \
     sudo \
+    vim \
     lsb-release && \
     rm -rf /var/lib/apt/lists/*
 RUN mkdir -p $TEMP_DIR && cd $TEMP_DIR && \
@@ -21,5 +22,8 @@ RUN $INSTALL_DIR/install_dependencies/install_openvino_dependencies.sh
 # build Inference Engine samples
 RUN mkdir $INSTALL_DIR/deployment_tools/inference_engine/samples/build && cd $INSTALL_DIR/deployment_tools/inference_engine/samples/build && \
     /bin/bash -c "source $INSTALL_DIR/bin/setupvars.sh && cmake .. && make -j1"
+# start to setting the enviroment for tensorflow
+RUN bash /opt/intel/openvino/deployment_tools/model_optimizer/install_prerequisites/install_prerequisites.sh && \
+    bash /opt/intel/openvino/deployment_tools/model_optimizer/install_prerequisites/install_prerequisites_tf.sh
 
 
