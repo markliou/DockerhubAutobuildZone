@@ -1,0 +1,2 @@
+python3 /opt/intel/openvino/deployment_tools/model_optimizer/mo_tf.py  --batch 1 --input_model=510.pb --log_level=DEBUG --disable_fusing 
+
