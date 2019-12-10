@@ -3,6 +3,8 @@
 FROM tensorflow/tensorflow:latest-gpu-py3
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 # RUN apt update -y;\
 #     apt install software-properties-common -y
 

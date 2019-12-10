@@ -36,9 +36,9 @@ RUN apt update -y;\
     pip3 install scikit-image;\
     pip3 install matplotlib
 
-# RUN pip3 uninstall tensorflow-gpu -y;\
-#     pip3 uninstall tensorflow -y;\
-#     pip3 install --upgrade tensorflow-gpu==1.14
+RUN pip3 uninstall tensorflow-gpu -y;\
+    pip3 uninstall tensorflow -y;\
+    pip3 install --upgrade tensorflow-gpu==1.14
 
 RUN mkdir /workspace
 WORKDIR /workspace
