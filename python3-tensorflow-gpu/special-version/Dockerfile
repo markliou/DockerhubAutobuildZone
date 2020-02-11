@@ -21,6 +21,7 @@ RUN apt update -y;\
     apt install vim -y;\
     apt install cmake -y;\
     apt install git ;\
+    apt install wget ;\
     pip3 install tqdm;\
     pip3 install Pillow;\
     pip3 install scipy;\
@@ -37,13 +38,14 @@ RUN apt update -y;\
     pip3 install matplotlib
 
 # install nvtop
-RUN apt install git cmake libncurses5-dev libncursesw5-dev -y;\
-    git clone https://github.com/Syllo/nvtop.git;\
-    mkdir -p nvtop/build && cd nvtop/build;\
-    cd nvtop/build && cmake .. -DNVML_RETRIEVE_HEADER_ONLINE=True;\
-    make && make install;\
-    cd / && rm -fr nvtop
-    
+# RUN apt install git cmake libncurses5-dev libncursesw5-dev -y;\
+#     git clone https://github.com/Syllo/nvtop.git;\
+#     mkdir -p nvtop/build && cd nvtop/build;\
+#     cd nvtop/build && cmake .. -DNVML_RETRIEVE_HEADER_ONLINE=True;\
+#     make && make install;\
+#     cd / && rm -fr nvtop
+RUN wget https://github.com/markliou/DockerhubAutobuildZone/raw/master/python3-tensorflow-gpu/special-version/nvtop -O /usr/local/bin/nvtop ;\ 
+    chmod 755 /usr/local/bin/nvtop
     
 
 
