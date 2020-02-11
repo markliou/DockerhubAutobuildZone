@@ -19,6 +19,7 @@ RUN apt update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install vim -y;\
+    apt install cmake -y;\
     apt install git ;\
     pip3 install tqdm;\
     pip3 install Pillow;\
@@ -35,6 +36,16 @@ RUN apt update -y;\
     pip3 install scikit-image;\
     pip3 install matplotlib
 
+# install nvtop
+RUN apt install git cmake libncurses5-dev libncursesw5-dev -y;\
+    git clone https://github.com/Syllo/nvtop.git;\
+    mkdir -p nvtop/build && cd nvtop/build;\
+    cd nvtop/build && cmake .. -DNVML_RETRIEVE_HEADER_ONLINE=True;\
+    make && make install;\
+    cd / && rm -fr nvtop
+    
+    
+
 
 WORKDIR /workspace
     
@@ -44,5 +55,8 @@ EXPOSE 8888
 EXPOSE 6006   
     
 CMD ["bash"]
+
+
+
 
 
