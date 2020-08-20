@@ -1,0 +1,13 @@
+diff --git a/python/tvm/relay/frontend/keras.py b/python/tvm/relay/frontend/keras.py
+index 32de471..767cc8c 100644
+--- a/python/tvm/relay/frontend/keras.py
++++ b/python/tvm/relay/frontend/keras.py
+@@ -575,6 +575,8 @@ def _convert_upsample(inexpr, keras_layer, etab):
+         params['scale_h'] = h
+     elif upsample_type == 'UpSampling2D':
+         h, w = keras_layer.size
++        if w == 1:
++            w = h
+         if h != w:
+             raise tvm.error.OpAttributeInvalid(
+                 'Height must equal width for operator Upsample.')
