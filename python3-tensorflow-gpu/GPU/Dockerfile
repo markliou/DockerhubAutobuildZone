@@ -1,6 +1,7 @@
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:latest-gpu-py3
-FROM tensorflow/tensorflow:1.14.0-gpu-py3
+# FROM tensorflow/tensorflow:1.14.0-gpu-py3
+FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
 MAINTAINER markliou <markliou@ms51.url.com.tw>
 
@@ -36,9 +37,9 @@ RUN apt update -y;\
     pip3 install scikit-image;\
     pip3 install matplotlib
 
-RUN pip3 uninstall tensorflow-gpu -y;\
-    pip3 uninstall tensorflow -y;\
-    pip3 install --upgrade tensorflow-gpu==1.14
+# RUN pip3 uninstall tensorflow-gpu -y;\
+#     pip3 uninstall tensorflow -y;\
+#     pip3 install --upgrade tensorflow-gpu==1.14
 
 RUN mkdir /workspace
 WORKDIR /workspace
