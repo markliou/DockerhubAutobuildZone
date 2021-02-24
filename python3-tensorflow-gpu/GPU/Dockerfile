@@ -1,9 +1,9 @@
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:latest-gpu-py3
 # FROM tensorflow/tensorflow:1.14.0-gpu-py3
-FROM tensorflow/tensorflow:latest-gpu
+# FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
-MAINTAINER markliou <markliou@ms51.url.com.tw>
+FROM tensorflow/tensorflow:2.4.1-gpu
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -15,6 +15,9 @@ RUN apt update -y;\
     # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 2 ;\
     # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1 ;\
     # rm /etc/alternatives/python3;  ln -s /usr/bin/python3.6 /etc/alternatives/python3
+
+# installing Jax with cuda
+RUN pip3 install jax jaxlib==0.1.61+cuda110 -f https://storage.googleapis.com/jax-releases/jax_releases.html
 
 RUN apt update -y;\
     apt install python3-pip -y;\
