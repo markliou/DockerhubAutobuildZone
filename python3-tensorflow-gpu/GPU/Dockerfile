@@ -17,7 +17,7 @@ RUN apt update -y;\
     # rm /etc/alternatives/python3;  ln -s /usr/bin/python3.6 /etc/alternatives/python3
 
 # installing Jax with cuda
-RUN pip3 install jax jaxlib==0.1.61+cuda101 -f https://storage.googleapis.com/jax-releases/jax_releases.html
+RUN pip3 install jax jaxlib==0.1.61+cuda110 -f https://storage.googleapis.com/jax-releases/jax_releases.html
 
 RUN apt update -y;\
     apt install python3-pip -y;\
