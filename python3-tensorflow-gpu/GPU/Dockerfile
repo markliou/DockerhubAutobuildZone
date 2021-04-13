@@ -10,7 +10,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update -y;\
     # add-apt-repository ppa:jonathonf/python-3.6 -y;\
     # apt update -y;\
-    apt install tzdata -y 
+    apt install tzdata -y;\
+    apt install python-scipy
     # apt install python3.6 -y;\
     # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 2 ;\
     # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1 ;\
