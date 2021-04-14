@@ -6,6 +6,7 @@
 FROM tensorflow/tensorflow:2.4.1-gpu
 
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TF_FORCE_GPU_ALLOW_GROWTH=True
 
 RUN apt update -y;\
     # add-apt-repository ppa:jonathonf/python-3.6 -y;\
