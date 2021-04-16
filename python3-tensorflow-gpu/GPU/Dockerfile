@@ -12,6 +12,7 @@ RUN apt update -y;\
     # add-apt-repository ppa:jonathonf/python-3.6 -y;\
     # apt update -y;\
     apt install tzdata -y;\
+    apt install python3-opencv -y --fix-missing;\
     apt install python-scipy
     # apt install python3.6 -y;\
     # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 2 ;\
@@ -41,6 +42,7 @@ RUN apt update -y;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
+    pip3 install tensorflow-addons;\
     pip3 install matplotlib
 
 # RUN pip3 uninstall tensorflow-gpu -y;\
