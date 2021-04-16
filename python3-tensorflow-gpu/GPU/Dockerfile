@@ -13,7 +13,7 @@ RUN apt update -y;\
     # apt update -y;\
     apt install tzdata -y;\
     apt install python3-opencv -y --fix-missing;\
-    apt install python-scipy
+    apt install python-scipy -y
     # apt install python3.6 -y;\
     # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 2 ;\
     # update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 1 ;\
