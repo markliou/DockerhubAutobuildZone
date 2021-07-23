@@ -13,6 +13,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: checkout repo
+      uses: actions/checkout@v2
+    
+    - name: Log in to the Container registry
+      uses: docker/login-action@v1
+      with:
+        username: ${{ secrets.DOCKER_ACCOUNT }}
+        password: ${{ secrets.DOCKER_PASSWD }}
+
+    - name: python3-tensorflow-gpu
+      uses: docker/build-push-action@v2
+        with:
+          context: ./python3-tensorflow-gpu/GPU/.
+          push: True
+          tags: markliou/actionpush
