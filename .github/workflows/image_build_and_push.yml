@@ -24,8 +24,8 @@ jobs:
 
     - name: python3-tensorflow-gpu
       uses: docker/build-push-action@v2
-        with:
-          # context: ./python3-tensorflow-gpu/GPU/.
-          file: ./python3-tensorflow-gpu/GPU/Dockerfile
-          push: True
-          tags: markliou/actionpush
+      with:
+        context: ./python3-tensorflow-gpu/GPU/
+        # file: ./python3-tensorflow-gpu/GPU/Dockerfile
+        push: True
+        ags: markliou/actionpush
