@@ -4,7 +4,7 @@ MAINTAINER markliou@ms51.url.com.tw
 
 RUN apt update -y && apt install openssh-server net-tools python ansible -y
 
-##### setting the ssh login markliou
+##### setting the ssh login markliou => using "root" as user and the password is "docker"
 RUN echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile
 
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config

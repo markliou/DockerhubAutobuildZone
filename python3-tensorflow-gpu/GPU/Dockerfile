@@ -49,6 +49,13 @@ RUN apt update -y;\
 #     pip3 uninstall tensorflow -y;\
 #     pip3 install --upgrade tensorflow-gpu==1.14
 
+
+# SSH server, using "root" and password is "docker"
+RUN apt install openssh-server -y;\
+    echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile ;\
+    sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
+    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd 
+
 RUN mkdir /workspace
 WORKDIR /workspace
 
@@ -56,6 +63,7 @@ WORKDIR /workspace
 EXPOSE 8888
 # TensorBoard
 EXPOSE 6006
+# ssh
+EXPOSE 22
 
-
-CMD ["bash"]
+CMD [bash]
