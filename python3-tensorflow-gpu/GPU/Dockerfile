@@ -43,7 +43,8 @@ RUN apt update -y;\
     pip3 install tensorflow-datasets;\
     pip3 install tensorflow-addons==0.13.0;\
     pip3 install tensorflow-probability==0.13.0;\
-    pip3 install matplotlib
+    pip3 install matplotlib;\
+    pip3 install pip install opencv-contrib-python
 
 # RUN pip3 uninstall tensorflow-gpu -y;\
 #     pip3 uninstall tensorflow -y;\
