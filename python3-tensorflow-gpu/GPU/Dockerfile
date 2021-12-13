@@ -3,7 +3,7 @@
 # FROM tensorflow/tensorflow:1.14.0-gpu-py3
 # FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
-FROM tensorflow/tensorflow:2.5.0-gpu
+FROM tensorflow/tensorflow:2.7.0-gpu
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
@@ -18,7 +18,7 @@ RUN apt update -y;\
 # installing Jax with cuda
 # RUN pip3 install jax jaxlib==0.1.61+cuda110 -f https://storage.googleapis.com/jax-releases/jax_releases.html
 RUN pip install --upgrade pip
-RUN pip install --upgrade "jax[cuda111]" -f https://storage.googleapis.com/jax-releases/jax_releases.html
+RUN pip install --upgrade "jax[cuda11_cudnn82]" -f https://storage.googleapis.com/jax-releases/jax_releases.html
 
 
 RUN apt update -y;\
