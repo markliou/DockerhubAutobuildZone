@@ -12,8 +12,7 @@ RUN apt update -y;\
     # add-apt-repository ppa:jonathonf/python-3.6 -y;\
     # apt update -y;\
     apt install tzdata -y;\
-    apt install python3-opencv -y --fix-missing;\
-    apt install python-scipy -y
+    apt install python3-opencv -y --fix-missing
 
 # installing Jax with cuda
 # RUN pip3 install jax jaxlib==0.1.61+cuda110 -f https://storage.googleapis.com/jax-releases/jax_releases.html
@@ -42,8 +41,8 @@ RUN apt update -y;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
-    pip3 install tensorflow-addons==0.13.0;\
-    pip3 install tensorflow-probability==0.13.0;\
+    pip3 install tensorflow-addons;\
+    pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install pip install opencv-contrib-python
 
