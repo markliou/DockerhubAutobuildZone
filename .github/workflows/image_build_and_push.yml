@@ -38,3 +38,11 @@ jobs:
         # file: ./python3-tensorflow-gpu/GPU/Dockerfile
         push: True
         tags: markliou/python3-tensorflow-gpu:cpu
+
+    - name: spark:latest
+      uses: docker/build-push-action@v2
+      with:
+        context: ./spark/
+        # file: ./python3-tensorflow-gpu/GPU/Dockerfile
+        push: True
+        tags: markliou/spark:latest
