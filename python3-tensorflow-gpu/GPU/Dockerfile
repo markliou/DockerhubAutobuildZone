@@ -4,7 +4,7 @@
 # FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
 # FROM tensorflow/tensorflow:2.7.0-gpu
-FROM tensorflow/tensorflow:2.11.0rc1-gpu
+FROM tensorflow/tensorflow:2.11.0-gpu
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
