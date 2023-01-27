@@ -68,4 +68,4 @@ EXPOSE 6006
 # ssh
 EXPOSE 22
 
-CMD ["bash"]
+CMD ["/etc/init.d/ssh", "start", "-D"]
