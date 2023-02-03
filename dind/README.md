@@ -16,7 +16,10 @@ sudo docker build -t markliou/dind .
 This will build a docker image with name of markliou/dind .
 * run the container
 ```
-sudo docker run -d --rm markliou/dind
+# the basic mode
+sudo docker run -d --rm --privileged markliou/dind 
+# GPU available. The host also need to install the nvidia-docker
+sudo docker run -d --rm --gpus all --privileged markliou/dind
 ```
 You can also use the -it option for foreground execution. But remember, never use any command after the container. Or this will make the error. 
 
@@ -24,5 +27,6 @@ The final step is to start a new prompt for working.
 ```
 sudo docker exec -it XXXXXX
 ```
-XXXXX means the container number when you initiate a the daemon container.
+XXXXX means the container number when you initiate a the daemon container. 
+You can also run use GPUs with --gpus options with the in-side docker container (but the outside docker-in-docker container **also need to give the --gpus options**)
 
