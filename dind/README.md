@@ -17,9 +17,9 @@ This will build a docker image with name of markliou/dind .
 * run the container
 ```
 # the basic mode
-sudo docker run -d --rm --privileged markliou/dind 
+sudo docker run -d --rm -v /var/run/docker.sock:/var/run/docker.sock --privileged markliou/dind 
 # GPU available. The host also need to install the nvidia-docker
-sudo docker run -d --rm --gpus all --privileged markliou/dind
+sudo docker run -d --rm --gpus all -v /var/run/docker.sock:/var/run/docker.sock --privileged markliou/dind
 ```
 You can also use the -it option for foreground execution. But remember, never use any command after the container. Or this will make the error. 
 

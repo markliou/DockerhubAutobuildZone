@@ -62,7 +62,6 @@ RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh
 VOLUME /var/lib/docker
 EXPOSE 2375 2376
 
-ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
-CMD []
+CMD ["/usr/local/bin/dockerd-entrypoint.sh"]
 
 
