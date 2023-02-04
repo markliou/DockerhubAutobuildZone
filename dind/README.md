@@ -17,11 +17,18 @@ This will build a docker image with name of markliou/dind .
 * run the container
 ```
 # the basic mode
-sudo docker run -d --rm -v /var/run/docker.sock:/var/run/docker.sock --privileged markliou/dind 
+sudo docker run -d --rm --privileged markliou/dind 
 # GPU available. The host also need to install the nvidia-docker
-sudo docker run -d --rm --gpus all -v /var/run/docker.sock:/var/run/docker.sock --privileged markliou/dind
+sudo docker run -d --rm --gpus all --privileged markliou/dind
 ```
 You can also use the -it option for foreground execution. But remember, never use any command after the container. Or this will make the error. 
+
+Docker-in-Docker accepts the insecure registry. For example, the registry is 192.168.71.204:
+```
+sudo docker run -d --rm --privileged markliou/dind --insecure-registry "192.168.71.204"
+# using the domain name is also acceptable
+sudo docker run -d --rm --privileged markliou/dind --insecure-registry "rg.cri.io"
+```
 
 The final step is to start a new prompt for working.
 ```
