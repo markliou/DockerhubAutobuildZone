@@ -37,3 +37,8 @@ sudo docker exec -it XXXXXX
 XXXXX means the container number when you initiate a the daemon container. 
 You can also run use GPUs with --gpus options with the in-side docker container (but the outside docker-in-docker container **also need to give the --gpus options**)
 
+## references 
+* https://github.com/cruizba/ubuntu-dind
+* https://jiapan.me/2018/%E4%BD%BF%E7%94%A8-Supervisord-%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7/
+* https://github.com/docker-library/docker/blob/master/Dockerfile-dind.template
+
