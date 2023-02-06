@@ -11,6 +11,7 @@ RUN apt-get update -y ;\
     xfsprogs \
     curl \ 
     vim \
+    supervisor \
     pigz 
 
 RUN useradd -p "123" dockremap dockremap; \
@@ -29,7 +30,7 @@ RUN wget -O 'docker.tgz' 'https://download.docker.com/linux/static/test/x86_64/d
 	rm docker.tgz
 
 # install docker
-RUN curl -fsSL https://get.docker.com | sh
+RUN curl -fsSL https://get.docker.com | sh 
 
 # # if the docker-in-docker need to access the insecured repository, add the information here
 # RUN mkdir /etc/docker; echo "{\"insecure-registries\" : [\"http://rg.cri.lab\",\"http://127.0.0.1\"]}" >> /etc/docker/daemon.json
@@ -56,13 +57,16 @@ RUN set -eux; \
 	wget -O /usr/local/bin/dind "https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind"; \
 	chmod +x /usr/local/bin/dind
 
-COPY dockerd-entrypoint.sh /usr/local/bin/
-RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh
+COPY dockerd-entrypoint.sh modprobe entry.sh /usr/local/bin/
+# change the dockerd as daemon with supervisord
+COPY supervisord/ /etc/supervisor/conf.d/
+RUN chmod +x /usr/local/bin/dockerd-entrypoint.sh /usr/local/bin/modprobe /usr/local/bin/entry.sh 
+ 
+ENTRYPOINT ["bash","/usr/local/bin/entry.sh"]
 
 VOLUME /var/lib/docker
 EXPOSE 2375 2376
 
-ENTRYPOINT ["/usr/local/bin/dockerd-entrypoint.sh"]
-CMD []
+CMD ["bash"]
 
 
