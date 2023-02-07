@@ -25,7 +25,7 @@ processes=(dockerd)
 for process in "${processes[@]}"; do
     wait_for_process "$process"
     if [ $? -ne 0 ]; then
-        ERROR "$process is not running after max time"
+        echo "$process is not running after max time"
         exit 1
     else 
         echo "$process is running"
