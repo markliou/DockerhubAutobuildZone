@@ -41,4 +41,5 @@ You can also run use GPUs with --gpus options with the in-side docker container 
 * https://github.com/cruizba/ubuntu-dind
 * https://jiapan.me/2018/%E4%BD%BF%E7%94%A8-Supervisord-%E5%AE%9E%E7%8E%B0%E8%BF%9B%E7%A8%8B%E7%9B%91%E6%8E%A7/
 * https://github.com/docker-library/docker/blob/master/Dockerfile-dind.template
+* https://github.com/docker-library/docker/blob/7a7c807686f54b67646bc75d2c81a68f9a906dbd/23.0-rc/dind/Dockerfile
 
