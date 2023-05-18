@@ -43,6 +43,7 @@ RUN apt update -y;\
     pip3 install tensorflow-addons;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
+    pip3 install dvc;\
     pip3 install pip install opencv-contrib-python
 
 # RUN pip3 uninstall tensorflow-gpu -y;\
