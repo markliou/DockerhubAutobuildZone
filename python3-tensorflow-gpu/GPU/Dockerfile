@@ -10,8 +10,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 
 RUN apt update -y;\
-    # add-apt-repository ppa:jonathonf/python-3.6 -y;\
-    # apt update -y;\
     apt install tzdata -y;\
     apt install python3-opencv -y --fix-missing
 
