@@ -31,13 +31,13 @@ jobs:
         push: True
         tags: markliou/python3-tensorflow-gpu
 
-    - name: python3-tensorflow-gpu:cpu
-      uses: docker/build-push-action@v2
-      with:
-        context: ./python3-tensorflow-gpu/CPU/
-        # file: ./python3-tensorflow-gpu/GPU/Dockerfile
-        push: True
-        tags: markliou/python3-tensorflow-gpu:cpu
+    # - name: python3-tensorflow-gpu:cpu
+      # uses: docker/build-push-action@v2
+      # with:
+        # context: ./python3-tensorflow-gpu/CPU/
+        # # file: ./python3-tensorflow-gpu/GPU/Dockerfile
+        # push: True
+        # tags: markliou/python3-tensorflow-gpu:cpu
 
     - name: docker-in-docker
       uses: docker/build-push-action@v2
