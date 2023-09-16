@@ -18,6 +18,9 @@ RUN pip install --upgrade pip
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 RUN pip install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
+# installing keras-core
+RUN pip install --upgrade keras-core
+
 RUN apt update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
