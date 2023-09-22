@@ -9,8 +9,9 @@ FROM tensorflow/tensorflow:2.13.0-gpu
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 
-# upgrade python to 3.11 and install tensorflow
-RUN add-apt-repository ppa:deadsnakes/ppa -y &&  apt-get update -y;\
+# upgrade python to 3.11 and reinstall tensorflow
+RUN python -m pip uninstall tensorflow -y;\
+    add-apt-repository ppa:deadsnakes/ppa -y &&  apt-get update -y;\
     apt-get install python3.11 -y;\
     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1;\
     update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1;\
