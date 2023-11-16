@@ -1,26 +1,31 @@
+ARG TF_VER="2.14.0"
+
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:latest-gpu-py3
 # FROM tensorflow/tensorflow:1.14.0-gpu-py3
 # FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
-FROM tensorflow/tensorflow:2.14.0-gpu 
+# FROM tensorflow/tensorflow:2.14.0-gpu 
 # FROM tensorflow/tensorflow:2.15.0-gpu #2.15 cannot use cuda#2.15 cannot use cuda
-# FROM tensorflow/tensorflow:2.12.0-gpu
+# FROM tensorflow/tensorflow:2.12.0-gpu # the pallalle dataloader can work with this version
+
+FROM tensorflow/tensorflow:${TF_VER}-gpu
+
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 
-# upgrade python to 3.11 and reinstall tensorflow
-RUN python -m pip uninstall tensorflow -y;\
-    add-apt-repository ppa:deadsnakes/ppa -y &&  apt-get update -y;\
-    apt-get install python3.11 -y;\
-    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1;\
-    update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1;\
-    apt-get install python3-pip -y ;\
-    apt-get install python3.11-distutils -y;\
-    curl -sS https://bootstrap.pypa.io/get-pip.py | python3 ;\
-    python3 -m pip install html5lib ;\
-    python3 -m pip install tensorflow
+# # upgrade python to 3.11 and reinstall tensorflow
+# RUN python -m pip uninstall tensorflow -y;\
+#     add-apt-repository ppa:deadsnakes/ppa -y &&  apt-get update -y;\
+#     apt-get install python3.11 -y;\
+#     update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1;\
+#     update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1;\
+#     apt-get install python3-pip -y ;\
+#     apt-get install python3.11-distutils -y;\
+#     curl -sS https://bootstrap.pypa.io/get-pip.py | python3 ;\
+#     python3 -m pip install html5lib ;\
+#     python3 -m pip install tensorflow
 
 RUN apt update -y;\
     apt install tzdata -y;\
