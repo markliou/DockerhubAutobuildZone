@@ -3,7 +3,8 @@
 # FROM tensorflow/tensorflow:1.14.0-gpu-py3
 # FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
-FROM tensorflow/tensorflow:2.13.0-gpu
+FROM tensorflow/tensorflow:2.14.0-gpu 
+# FROM tensorflow/tensorflow:2.15.0-gpu #2.15 cannot use cuda#2.15 cannot use cuda
 # FROM tensorflow/tensorflow:2.12.0-gpu
 
 ENV DEBIAN_FRONTEND=noninteractive
