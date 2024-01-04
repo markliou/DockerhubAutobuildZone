@@ -14,6 +14,8 @@ FROM tensorflow/tensorflow:${TF_VER}-gpu
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
+ENV XLA_PYTHON_CLIENT_PREALLOCATE=false
+ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
 
 # # upgrade python to 3.11 and reinstall tensorflow
 # RUN python -m pip uninstall tensorflow -y;\
@@ -33,15 +35,16 @@ RUN apt update -y;\
 
 # installing Jax with cuda
 RUN pip install --upgrade pip
+
+# installing pytorch 
+RUN pip3 install torch torchvision torchaudio
+
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # installing keras-core
 # test the gpu available: torch.cuda.is_available()
 RUN pip install --upgrade keras-core
-
-# installing pytorch 
-RUN pip3 install torch torchvision torchaudio
 
 RUN apt update -y;\
     apt install python3-pip -y;\
