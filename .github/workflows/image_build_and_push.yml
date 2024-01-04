@@ -33,7 +33,7 @@ jobs:
         context: ./python3-tensorflow-gpu/GPU/
         # file: ./python3-tensorflow-gpu/GPU/Dockerfile
         push: True
-        tags: markliou/python3-tensorflow-gpu markliou/python3-tensorflow-gpu:${{ steps.date.outputs.date }}
+        tags: markliou/python3-tensorflow-gpu:latest markliou/python3-tensorflow-gpu:${{ steps.date.outputs.date }}
 
     # - name: python3-tensorflow-gpu:cpu
       # uses: docker/build-push-action@v2
