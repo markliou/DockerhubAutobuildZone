@@ -1,4 +1,4 @@
-ARG TF_VER="2.14.0"
+ARG TF_VER="2.15.0"
 
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:latest-gpu-py3
@@ -37,7 +37,11 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # installing keras-core
+# test the gpu available: torch.cuda.is_available()
 RUN pip install --upgrade keras-core
+
+# installing pytorch 
+RUN pip3 install torch torchvision torchaudio
 
 RUN apt update -y;\
     apt install python3-pip -y;\
