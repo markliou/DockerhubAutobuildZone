@@ -24,7 +24,7 @@ jobs:
 
     - name: get the current date
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+      run: echo "date=$(date +'%Y-%m-%d--%M-%S')" >> $GITHUB_OUTPUT
 
     ###### building process ######
     - name: python3-tensorflow-gpu
