@@ -44,7 +44,7 @@ jobs:
         # tags: markliou/python3-tensorflow-gpu:cpu
 
     - name: docker-in-docker
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v5
       with:
         context: ./dind/
         # file: ./python3-tensorflow-gpu/GPU/Dockerfile
