@@ -14,10 +14,10 @@ jobs:
 
     steps:
     - name: checkout repo
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Log in to the Container registry
-      uses: docker/login-action@v2
+      uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKER_ACCOUNT }}
         password: ${{ secrets.DOCKER_PASSWD }}
@@ -44,7 +44,7 @@ jobs:
         # tags: markliou/python3-tensorflow-gpu:cpu
 
     - name: docker-in-docker
-      uses: docker/build-push-action@v2
+      uses: docker/build-push-action@v5
       with:
         context: ./dind/
         # file: ./python3-tensorflow-gpu/GPU/Dockerfile
