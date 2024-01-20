@@ -4,7 +4,7 @@ import torch
 
 
 def check_tf():
-    pass
+    assert(len(tf.config.list_physical_devices('GPU')) > 0)
 
 def check_jax():
     pass
