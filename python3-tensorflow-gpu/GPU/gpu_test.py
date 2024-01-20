@@ -7,10 +7,11 @@ def check_tf():
     assert(len(tf.config.list_physical_devices('GPU')) > 0)
 
 def check_jax():
-    pass
+    assert(len(jax.devices()) > 0)
+
 
 def check_torch():
-    pass
+    assert()
 
 
 def main():
