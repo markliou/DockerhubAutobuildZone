@@ -41,7 +41,7 @@ RUN pip install --upgrade pip
 RUN pip3 install torch torchvision torchaudio
 
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # installing keras3
 # RUN pip install --upgrade keras
