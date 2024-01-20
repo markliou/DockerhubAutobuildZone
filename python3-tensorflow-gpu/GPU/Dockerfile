@@ -75,13 +75,13 @@ RUN apt update -y;\
 
 # hugging face toolchain
 RUN pip3 install transformers;\
+    pip3 install accelerate;\
     pip3 install -U "huggingface_hub[cli]";\
     git config --global credential.helper store
 
 # RUN pip3 uninstall tensorflow-gpu -y;\
 #     pip3 uninstall tensorflow -y;\
 #     pip3 install --upgrade tensorflow-gpu==1.14
-
 
 # SSH server, using "root" and password is "docker"
 RUN apt install openssh-server -y;\
