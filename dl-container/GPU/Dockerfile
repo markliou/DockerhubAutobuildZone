@@ -29,6 +29,10 @@ ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
 #     python3 -m pip install html5lib ;\
 #     python3 -m pip install tensorflow
 
+RUN apt update -y;\
+    apt install tzdata -y;\
+    apt install python3-opencv -y --fix-missing
+
 # SSH server, using "root" and password is "docker"
 RUN apt install openssh-server -y;\
     echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile ;\
@@ -53,5 +57,3 @@ EXPOSE 6006
 EXPOSE 22
 
 CMD ["/etc/init.d/ssh", "start", "-D"]
-
-
