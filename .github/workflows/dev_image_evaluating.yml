@@ -2,7 +2,7 @@ name: Docker image evaluating process
 on:
   push:
     branches:
-      - 'dev/**'
+      - dev
 
 jobs:
 
@@ -21,15 +21,12 @@ jobs:
         username: ${{ secrets.DOCKER_ACCOUNT }}
         password: ${{ secrets.DOCKER_PASSWD }}
 
-    - name: get the current date
-      id: date
-      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
-
     ###### building process ######
     - name: dl-container
       uses: docker/build-push-action@v5
       with:
         context: ./dl-container/GPU/
         # file: ./dl-container/GPU/Dockerfile
-        push: False
+        push: True
+
         tags: markliou/dl-container:temp

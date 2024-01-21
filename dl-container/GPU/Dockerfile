@@ -37,11 +37,11 @@ RUN pip install --upgrade pip
 
 # installing pytorch 
 # test the gpu available: torch.cuda.is_available()
-RUN pip3 install torch torchvision torchaudio
+RUN pip3 install --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 # installing Jax with cuda
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # installing keras3
 # RUN pip install --upgrade keras
@@ -78,6 +78,9 @@ RUN pip3 install transformers;\
     pip3 install accelerate;\
     pip3 install -U "huggingface_hub[cli]";\
     git config --global credential.helper store
+
+# the gpu test script: Tensorflow, Jax, pyTorch
+COPY gpu_test.py /root/
 
 # RUN pip3 uninstall tensorflow-gpu -y;\
 #     pip3 uninstall tensorflow -y;\
