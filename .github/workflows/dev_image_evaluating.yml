@@ -2,7 +2,7 @@ name: Docker image evaluating process
 on:
   push:
     branches:
-      - 'dev/**'
+      - dev
 
 jobs:
 
