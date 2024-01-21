@@ -29,6 +29,60 @@ ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
 #     python3 -m pip install html5lib ;\
 #     python3 -m pip install tensorflow
 
+RUN apt update -y;\
+    apt install tzdata -y;\
+    apt install python3-opencv -y --fix-missing
+
+RUN pip install --upgrade pip
+
+# installing pytorch 
+# test the gpu available: torch.cuda.is_available()
+RUN pip3 install torch torchvision torchaudio
+
+# installing Jax with cuda
+# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+# installing keras3
+# RUN pip install --upgrade keras
+
+RUN apt update -y;\
+    apt install python3-pip -y;\
+    apt install python3-tk -y;\
+    apt install git -y;\
+    apt install vim -y;\
+    apt install wget -y;\
+    apt install -y libsm6 libxext6 ;\
+    easy_install pip ;\
+    pip3 install tqdm;\
+    pip3 install Pillow;\
+    pip3 install scipy;\
+    pip3 install dill;\
+    # pip3 install ktext;\
+    pip3 install h5py;\
+    pip3 install pandas;\
+    pip3 install grpcio;\
+    pip3 install Flask;\
+    # pip3 install futures;\
+    pip3 install redis;\
+    pip3 install scikit-image;\
+    pip3 install tensorflow-datasets;\
+    pip3 install tensorflow-addons;\
+    pip3 install tensorflow-probability;\
+    pip3 install matplotlib;\
+    pip3 install dvc;\
+    pip3 install pip install opencv-contrib-python
+
+# hugging face toolchain
+RUN pip3 install transformers;\
+    pip3 install accelerate;\
+    pip3 install -U "huggingface_hub[cli]";\
+    git config --global credential.helper store
+
+# RUN pip3 uninstall tensorflow-gpu -y;\
+#     pip3 uninstall tensorflow -y;\
+#     pip3 install --upgrade tensorflow-gpu==1.14
+
 # SSH server, using "root" and password is "docker"
 RUN apt install openssh-server -y;\
     echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile ;\
