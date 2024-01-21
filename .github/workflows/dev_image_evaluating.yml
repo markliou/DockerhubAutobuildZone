@@ -31,5 +31,5 @@ jobs:
       with:
         context: ./dl-container/GPU/
         # file: ./dl-container/GPU/Dockerfile
-        push: False
+        push: True
         tags: markliou/dl-container:temp
