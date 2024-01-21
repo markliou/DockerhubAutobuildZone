@@ -33,15 +33,15 @@ RUN apt update -y;\
     apt install tzdata -y;\
     apt install python3-opencv -y --fix-missing
 
-# installing Jax with cuda
 RUN pip install --upgrade pip
 
 # installing pytorch 
 # test the gpu available: torch.cuda.is_available()
 RUN pip3 install torch torchvision torchaudio
 
+# installing Jax with cuda
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # installing keras3
 # RUN pip install --upgrade keras
