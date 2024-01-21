@@ -81,6 +81,7 @@ RUN pip3 install transformers;\
 
 # the gpu test script: Tensorflow, Jax, pyTorch
 COPY gpu_test.py /usr/local/bin/gpu_test
+RUN chmod 0755 /usr/local/bin/gpu_test
 
 # RUN pip3 uninstall tensorflow-gpu -y;\
 #     pip3 uninstall tensorflow -y;\
