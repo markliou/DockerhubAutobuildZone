@@ -1,4 +1,4 @@
-name: Docker image building process
+name: Docker image publishing process
 
 # main branch for publishing
 on:
