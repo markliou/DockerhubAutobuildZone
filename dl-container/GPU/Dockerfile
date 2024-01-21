@@ -80,8 +80,7 @@ RUN pip3 install transformers;\
     git config --global credential.helper store
 
 # the gpu test script: Tensorflow, Jax, pyTorch
-COPY gpu_test.py /root/
-RUN alias gpu_test="python /root/gpu_test.py"
+COPY gpu_test.py /usr/local/bin/gpu_test
 
 # RUN pip3 uninstall tensorflow-gpu -y;\
 #     pip3 uninstall tensorflow -y;\
