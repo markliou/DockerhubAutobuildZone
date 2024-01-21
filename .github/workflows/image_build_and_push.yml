@@ -1,16 +1,19 @@
 name: Docker image building process
 
+# main branch for publishing
 on:
   push:
-    branches: [ master ]
+    branches:
+      - master
   # pull_request:
   #   branches: [ master ]
 
 jobs:
 
-  build:
+  build-and-publish:
 
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
 
     steps:
     - name: checkout repo
@@ -27,27 +30,18 @@ jobs:
       run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
     ###### building process ######
-    - name: python3-tensorflow-gpu
+    - name: dl-container
       uses: docker/build-push-action@v5
       with:
-        context: ./python3-tensorflow-gpu/GPU/
-        # file: ./python3-tensorflow-gpu/GPU/Dockerfile
+        context: ./dl-container/GPU/
+        # file: ./dl-container/GPU/Dockerfile
         push: True
-        tags: markliou/python3-tensorflow-gpu:latest , markliou/python3-tensorflow-gpu:${{ steps.date.outputs.date }}
-
-    # - name: python3-tensorflow-gpu:cpu
-      # uses: docker/build-push-action@v2
-      # with:
-        # context: ./python3-tensorflow-gpu/CPU/
-        # # file: ./python3-tensorflow-gpu/GPU/Dockerfile
-        # push: True
-        # tags: markliou/python3-tensorflow-gpu:cpu
+        tags: markliou/dl-container:latest , markliou/dl-container:${{ steps.date.outputs.date }}
 
     - name: docker-in-docker
       uses: docker/build-push-action@v5
       with:
         context: ./dind/
-        # file: ./python3-tensorflow-gpu/GPU/Dockerfile
         push: True
         tags: markliou/dind
 
@@ -58,3 +52,40 @@ jobs:
     #     # file: ./python3-tensorflow-gpu/GPU/Dockerfile
     #     push: True
     #     tags: markliou/spark:latest
+
+# dev branch for evaluating
+name: Docker image evaluating process
+on:
+  push:
+    branches:
+      - 'dev/**'
+
+jobs:
+
+  build-and-publish:
+
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+
+    - name: Log in to the Container registry
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_ACCOUNT }}
+        password: ${{ secrets.DOCKER_PASSWD }}
+
+    - name: get the current date
+      id: date
+      run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
+
+    ###### building process ######
+    - name: dl-container
+      uses: docker/build-push-action@v5
+      with:
+        context: ./dl-container/GPU/
+        # file: ./dl-container/GPU/Dockerfile
+        push: False
+        tags: markliou/dl-container:temp
