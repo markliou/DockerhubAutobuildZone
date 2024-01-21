@@ -79,6 +79,9 @@ RUN pip3 install transformers;\
     pip3 install -U "huggingface_hub[cli]";\
     git config --global credential.helper store
 
+# the gpu test script: Tensorflow, Jax, pyTorch
+COPY gpu_test.py /root/
+
 # RUN pip3 uninstall tensorflow-gpu -y;\
 #     pip3 uninstall tensorflow -y;\
 #     pip3 install --upgrade tensorflow-gpu==1.14
