@@ -31,13 +31,13 @@ jobs:
       run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
     ###### building process ######
-    - name: dl-container
-      uses: docker/build-push-action@v5
-      with:
-        context: ./dl-container/GPU/
-        # file: ./dl-container/GPU/Dockerfile
-        push: True
-        tags: markliou/dl-container:latest , markliou/dl-container:${{ steps.date.outputs.date }}
+    # - name: dl-container
+    #   uses: docker/build-push-action@v5
+    #   with:
+    #     context: ./dl-container/GPU/
+    #     # file: ./dl-container/GPU/Dockerfile
+    #     push: True
+    #     tags: markliou/dl-container:latest , markliou/dl-container:${{ steps.date.outputs.date }}
 
     - name: docker-in-docker
       uses: docker/build-push-action@v5
