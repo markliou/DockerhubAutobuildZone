@@ -29,8 +29,8 @@ RUN \
     service docker start; \
     rm -rf /var/cache/apt;
 
-# # if the docker-in-docker need to access the insecured repository, add the information here
-# RUN mkdir /etc/docker; echo "{\"insecure-registries\" : [\"http://rg.cri.lab\",\"http://127.0.0.1\"]}" >> /etc/docker/daemon.json
+# if the docker-in-docker need to access the insecured repository, add the information here
+RUN mkdir /etc/docker; echo "{\"insecure-registries\" : [\"http://rg.cri.lab\",\"http://127.0.0.1\"]}" >> /etc/docker/daemon.json
 
 # install nvidia-docker2. This will make the wraper, so the /etc/docker/daemon.json will be made and conflect with insecure registry setting.
 # We need to rewrite the daemon.json. 
@@ -40,12 +40,6 @@ RUN distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
     sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list && \
     apt update -y ; apt install nvidia-docker2 -y
-
-#RUN head -n -1 /etc/docker/daemon.json >> /etc/docker/daemon.json~ ; \
-#    echo "," >> /etc/docker/daemon.json~ ; \
-#    echo "\"insecure-registries\" : [\"http://rg.cri.lab\",\"http://127.0.0.1\"]}" >> /etc/docker/daemon.json~ ;\
-#    mv /etc/docker/daemon.json~ /etc/docker/daemon.json
-
 
 COPY modprobe entry.sh /usr/local/bin/
 # change the dockerd as daemon with supervisord
