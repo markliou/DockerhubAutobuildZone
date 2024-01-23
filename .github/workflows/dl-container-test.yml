@@ -2,17 +2,23 @@ name: container_gpu_test
 
 # main branch for publishing
 on:
-    workflow_run:
-        workflows: 
-            - docker_image_evaluating_process
-            - docker_image_publishing_process
-        branches:
-            - master
-            - dev
-        types:
-          - completed
+  workflow_run:
+    workflows:
+      - docker_image_evaluating_process
+      - docker_image_publishing_process
+    branches:
+      - master
+      - dev
+    types:
+      - completed
 
 jobs:
+  evaluating:
+    runs-on:
+      - gpu
 
-    evaluation:
-        runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker run -it --rm --gpus all markliou/dl-container:temp gpu_test
+      - run: docker run -it --rm --gpus all markliou/dl-container gpu_test
+
