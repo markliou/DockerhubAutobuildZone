@@ -11,14 +11,33 @@ RUN apt-get update -y ;\
     curl \ 
     vim \
     lsb-core \
+    bridge-utils \
     ca-certificates curl gnupg \
     supervisor \
     pigz 
 
+
+# dind might be used on systems where the nf_tables kernel module isn't available. In that case,
+# we need to switch over to xtables-legacy. See https://github.com/docker-library/docker/issues/463
+#RUN update-alternatives --set iptables /usr/sbin/iptables-legacy ; \
+#    for f in iptables iptables-save iptables-restore ip6tables ip6tables-save ip6tables-restore ; do b="/sbin/${f/tables/tables-legacy}"; "$b" --version; ln -svT "$b" "/usr/local/sbin/.iptables-legacy/$f"; done; export PATH="/usr/local/sbin/.iptables-legacy:$PATH"; iptables --version | grep legacy
+
+# set up subuid/subgid so that "--userns-remap=default" works out-of-the-box
+#RUN set -eux; \
+#    addgroup dockremap; \
+#    adduser dockremap dockremap; \
+#    echo 'dockremap:165536:65536' >> /etc/subuid; \
+#    echo 'dockremap:165536:65536' >> /etc/subgid
+
+
+
+# docker installing process
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg; \
     echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null; \
     apt-get update -y; \
-    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin; 
+    #echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.conf; \
+    #wget https://github.com/docker-library/docker/blob/d3e33ac3bc1eab5d436b7ab2981ba539ebbb7275/25/dind/dockerd-entrypoint.sh -O /usr/local/bin/dockerd-entrypoint.sh; \
 
 
 

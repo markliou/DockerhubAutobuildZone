@@ -32,6 +32,8 @@ for process in "${processes[@]}"; do
     fi
 done
 
+# github action runner with root
+export RUNNER_ALLOW_RUNASROOT=true
 sleep infinity
 
 # Wait processes to be running

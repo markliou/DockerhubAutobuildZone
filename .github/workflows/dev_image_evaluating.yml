@@ -8,6 +8,7 @@ jobs:
 
   build-and-publish:
 
+    ###### dockerhub logging ######
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/dev'
 
