@@ -1,0 +1,18 @@
+name: container_gpu_test
+
+# main branch for publishing
+on:
+    workflow_run:
+        workflows: 
+            - docker_image_evaluating_process
+            - docker_image_publishing_process
+        branches:
+            - master
+            - dev
+        types:
+          - completed
+
+jobs:
+
+    evaluation:
+        runs-on: self-hosted

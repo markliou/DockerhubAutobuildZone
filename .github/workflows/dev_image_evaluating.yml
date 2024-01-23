@@ -1,4 +1,4 @@
-name: Docker image evaluating process
+name: docker_image_evaluating_process
 on:
   push:
     branches:
