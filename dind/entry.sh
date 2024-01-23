@@ -32,5 +32,7 @@ for process in "${processes[@]}"; do
     fi
 done
 
+sleep infinity
+
 # Wait processes to be running
 "$@"
