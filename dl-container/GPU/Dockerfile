@@ -35,9 +35,10 @@ RUN apt update -y;\
 
 RUN pip install --upgrade pip
 
-# installing pytorch 
+# installing pytorch -- but skip install cuda related package
 # test the gpu available: torch.cuda.is_available()
-RUN pip3 install --upgrade torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+RUN pip3 install --upgrade torch torchvision torchaudio --no-deps ;\
+    pip3 install sympy triton
 
 # installing Jax with cuda
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
