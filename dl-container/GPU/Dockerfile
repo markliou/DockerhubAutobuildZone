@@ -5,7 +5,7 @@ ARG TF_VER="2.15.0"
 # FROM tensorflow/tensorflow:1.14.0-gpu-py3
 # FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
-# FROM tensorflow/tensorflow:2.14.0-gpu 
+# FROM tensorflow/tensorflow:2.14.0-gpu
 # FROM tensorflow/tensorflow:2.15.0-gpu #2.15 cannot use cuda#2.15 cannot use cuda
 # FROM tensorflow/tensorflow:2.12.0-gpu # the pallalle dataloader can work with this version
 
@@ -35,14 +35,13 @@ RUN apt update -y;\
 
 RUN pip install --upgrade pip
 
-# installing pytorch -- but skip install cuda related package
-# test the gpu available: torch.cuda.is_available()
-RUN pip3 install --upgrade torch torchvision torchaudio --no-deps ;\
-    pip3 install sympy triton
-
 # installing Jax with cuda
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+# installing pytorch -- but skip install cuda related package
+# test the gpu available: torch.cuda.is_available()
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 # installing keras3
 # RUN pip install --upgrade keras
@@ -92,7 +91,7 @@ RUN chmod 0755 /usr/local/bin/gpu_test
 RUN apt install openssh-server -y;\
     echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile ;\
     sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
-    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd 
+    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
 # providing the public key for loggin (optional)
 RUN mkdir /root/.ssh ;\
