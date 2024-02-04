@@ -11,8 +11,8 @@ jobs:
     ###### dockerhub logging ######
     runs-on:
       # - ubuntu-latest
-      # - gpu
-      - gardner
+      - gpu
+      # - gardner
     if: github.ref == 'refs/heads/dev'
 
     steps:
