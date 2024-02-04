@@ -9,7 +9,9 @@ jobs:
   build-and-publish:
 
     ###### dockerhub logging ######
-    runs-on: ubuntu-latest
+    runs-on:
+      # - ubuntu-latest
+      - gpu
     if: github.ref == 'refs/heads/dev'
 
     steps:
