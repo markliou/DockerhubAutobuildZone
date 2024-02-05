@@ -12,29 +12,29 @@ cd pytorch
 git submodule sync
 git submodule update --init --recursive
 pip3 install cmake ninja mkl-static mkl-include
-pip3 install -r requirements.txt
-python setup.py bdist_wheel
-pip3 install `ls dist/*`
-python setup.py install
+# pip3 install -r requirements.txt
+# python setup.py bdist_wheel
+# pip3 install `ls dist/*`
+# python setup.py install
 
 # install torch-audio
 cd /root
 git clone --recursive https://github.com/pytorch/audio
-cd audio
-git submodule sync
-git submodule update --init --recursive
-pip3 install -r requirements.txt
-python setup.py bdist_wheel
-pip3 install `ls dist/*`
-python setup.py install
+# cd audio
+# git submodule sync
+# git submodule update --init --recursive
+# pip3 install -r requirements.txt
+# python setup.py bdist_wheel
+# pip3 install `ls dist/*`
+# python setup.py install
 
 # install torch-vision
 cd /root
-git clone --recursive https://github.com/pytorch/audio
-cd audio
-git submodule sync
-git submodule update --init --recursive
-pip3 install -r requirements.txt
-python setup.py bdist_wheel
-pip3 install `ls dist/*`
-python setup.py install
+git clone --recursive https://github.com/pytorch/vision
+# cd vision
+# git submodule sync
+# git submodule update --init --recursive
+# pip3 install -r requirements.txt
+# python setup.py bdist_wheel
+# pip3 install `ls dist/*`
+# python setup.py install
