@@ -2,7 +2,7 @@
 
 export _GLIBCXX_USE_CXX11_ABI=1
 
-apt update -y ; apt install git cuda-toolkit-12-3
+apt update -y ; apt install git cuda-toolkit-12-3 -y
 
 # install torch
 cd /root
@@ -15,6 +15,7 @@ pip3 install cmake ninja mkl-static mkl-include
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
 pip3 install `ls dist/*`
+python setup.py install
 
 # install torch-audio
 cd /root
@@ -25,6 +26,7 @@ git submodule update --init --recursive
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
 pip3 install `ls dist/*`
+python setup.py install
 
 # install torch-vision
 cd /root
@@ -35,3 +37,4 @@ git submodule update --init --recursive
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
 pip3 install `ls dist/*`
+python setup.py install

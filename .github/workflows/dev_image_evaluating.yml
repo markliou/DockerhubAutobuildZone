@@ -10,8 +10,8 @@ jobs:
 
     ###### dockerhub logging ######
     runs-on:
-      - ubuntu-latest
-      # - gpu
+      # - ubuntu-latest
+      - gpu
       # - hope
     if: github.ref == 'refs/heads/dev'
 
