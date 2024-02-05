@@ -73,8 +73,8 @@ RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/j
 # installing pytorch -- but skip install cuda related package
 # test the gpu available: torch.cuda.is_available()
 # RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-COPY build_torch_from_source /root/
-RUN chmod 0755 /root/build_torch_from_source ; ./root/build_torch_from_source
+COPY build_torch_from_source.sh /root/
+RUN chmod 0755 /root/build_torch_from_source.sh ; ./root/build_torch_from_source.sh
 
 
 # hugging face toolchain
