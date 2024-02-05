@@ -16,6 +16,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 ENV XLA_PYTHON_CLIENT_PREALLOCATE=false
 ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
+ENV _GLIBCXX_USE_CXX11_ABI=1
 
 # # upgrade python to 3.11 and reinstall tensorflow
 # RUN python -m pip uninstall tensorflow -y;\
@@ -87,7 +88,7 @@ RUN chmod 0755 /root/build_torch_from_source.sh ;\
     cd /root/vision ;\
     python setup.py bdist_wheel ;\
     pip3 install `ls dist/*`  ;\
-    python setup.py install  ;\
+    python setup.py install
 
 
 # hugging face toolchain
