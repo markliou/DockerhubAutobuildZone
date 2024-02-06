@@ -16,7 +16,7 @@ git submodule update --init --recursive
 pip3 install cmake ninja mkl-static mkl-include
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
-pip3 install `ls dist/*`
+# pip3 install `ls dist/*`
 python setup.py install
 
 # install torch-audio
@@ -28,7 +28,7 @@ git submodule sync
 git submodule update --init --recursive
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
-pip3 install `ls dist/*`
+# pip3 install `ls dist/*`
 python setup.py install
 
 # install torch-vision
@@ -40,7 +40,7 @@ git submodule sync
 git submodule update --init --recursive
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
-pip3 install `ls dist/*`
+# pip3 install `ls dist/*`
 python setup.py install
 
 # cleaning the folder to reduct the volume of the image

@@ -30,7 +30,7 @@ ENV _GLIBCXX_USE_CXX11_ABI=1
 #     python3 -m pip install html5lib ;\
 #     python3 -m pip install tensorflow
 
-RUN apt update -y;\
+RUN apt-get update -y;\
     apt install tzdata -y;\
     apt install python3-opencv -y --fix-missing
 
@@ -39,7 +39,7 @@ RUN pip install --upgrade pip
 # installing keras3
 # RUN pip install --upgrade keras
 
-RUN apt update -y;\
+RUN apt-get update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install git -y;\
@@ -76,22 +76,22 @@ RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/j
 # RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 COPY build_torch_from_source.sh /root/
 RUN chmod 0755 /root/build_torch_from_source.sh ;\
-    /root/build_torch_from_source.sh ;\
-    # install torch
-    cd /root/pytorch ;\
-    python setup.py bdist_wheel ;\
-    pip3 install `ls dist/*`  ;\
-    python setup.py install  ;\
-    # install torchaudio
-    cd /root/audio ;\
-    python setup.py bdist_wheel ;\
-    pip3 install `ls dist/*`  ;\
-    python setup.py install  ;\
-    # install torchvision
-    cd /root/vision ;\
-    python setup.py bdist_wheel ;\
-    pip3 install `ls dist/*`  ;\
-    python setup.py install
+    /root/build_torch_from_source.sh
+    # # install torch
+    # cd /root/pytorch ;\
+    # python setup.py bdist_wheel ;\
+    # pip3 install `ls dist/*`  ;\
+    # python setup.py install  ;\
+    # # install torchaudio
+    # cd /root/audio ;\
+    # python setup.py bdist_wheel ;\
+    # pip3 install `ls dist/*`  ;\
+    # python setup.py install  ;\
+    # # install torchvision
+    # cd /root/vision ;\
+    # python setup.py bdist_wheel ;\
+    # pip3 install `ls dist/*`  ;\
+    # python setup.py install
 
 # hugging face toolchain
 RUN pip3 install transformers;\
