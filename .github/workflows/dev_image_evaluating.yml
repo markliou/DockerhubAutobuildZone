@@ -12,8 +12,8 @@ jobs:
     runs-on:
       # - ubuntu-latest
       - cindy
-      - gpu
-      - hope
+      # - gpu
+      # - hope
     if: github.ref == 'refs/heads/dev'
 
     steps:

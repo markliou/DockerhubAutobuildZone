@@ -22,7 +22,7 @@ jobs:
 
   dev_dl-container_test:
     runs-on:
-      - cindy
+      # - cindy
       - gpu
     steps:
       - run: docker pull markliou/dl-container:temp
@@ -30,7 +30,7 @@ jobs:
 
   published_dl-container_test:
     runs-on:
-      - cindy
+      # - cindy
       - gpu
     steps:
       - run: docker pull markliou/dl-container:latest
