@@ -11,7 +11,8 @@ jobs:
     ###### dockerhub logging ######
     runs-on:
       # - ubuntu-latest
-      - cindy
+      - nchc
+      # - cindy
       # - gpu
       # - hope
     if: github.ref == 'refs/heads/dev'
