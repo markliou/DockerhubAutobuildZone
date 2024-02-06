@@ -11,8 +11,9 @@ jobs:
     ###### dockerhub logging ######
     runs-on:
       # - ubuntu-latest
+      - cindy
       - gpu
-      # - hope
+      - hope
     if: github.ref == 'refs/heads/dev'
 
     steps:

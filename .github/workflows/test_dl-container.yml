@@ -13,15 +13,16 @@ on:
       - completed
 
 jobs:
-  checkout:
-    runs-on:
-      - gpu
-    steps:
-      - name: gpu_test
-        uses: actions/checkout@v4
+  # checkout:
+  #   runs-on:
+  #     - gpu
+  #   steps:
+  #     - name: gpu_test
+  #       uses: actions/checkout@v4
 
   dev_dl-container_test:
     runs-on:
+      - cindy
       - gpu
     steps:
       - run: docker pull markliou/dl-container:temp
@@ -29,8 +30,8 @@ jobs:
 
   published_dl-container_test:
     runs-on:
+      - cindy
       - gpu
     steps:
       - run: docker pull markliou/dl-container:latest
       - run: docker run --rm --gpus all markliou/dl-container:latest gpu_test
-

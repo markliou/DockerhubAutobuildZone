@@ -77,19 +77,21 @@ RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/j
 COPY build_torch_from_source.sh /root/
 RUN chmod 0755 /root/build_torch_from_source.sh ;\
     /root/build_torch_from_source.sh ;\
+    # install torch
     cd /root/pytorch ;\
     python setup.py bdist_wheel ;\
     pip3 install `ls dist/*`  ;\
     python setup.py install  ;\
+    # install torchaudio
     cd /root/audio ;\
     python setup.py bdist_wheel ;\
     pip3 install `ls dist/*`  ;\
     python setup.py install  ;\
+    # install torchvision
     cd /root/vision ;\
     python setup.py bdist_wheel ;\
     pip3 install `ls dist/*`  ;\
     python setup.py install
-
 
 # hugging face toolchain
 RUN pip3 install transformers;\
