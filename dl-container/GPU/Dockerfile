@@ -66,32 +66,16 @@ RUN apt-get update -y;\
     pip3 install dvc;\
     pip3 install pip install opencv-contrib-python
 
-
-# installing Jax with cuda
-# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
 # installing pytorch -- but skip install cuda related package
 # test the gpu available: torch.cuda.is_available()
 # RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 COPY build_torch_from_source.sh /root/
 RUN chmod 0755 /root/build_torch_from_source.sh ;\
     /root/build_torch_from_source.sh
-    # # install torch
-    # cd /root/pytorch ;\
-    # python setup.py bdist_wheel ;\
-    # pip3 install `ls dist/*`  ;\
-    # python setup.py install  ;\
-    # # install torchaudio
-    # cd /root/audio ;\
-    # python setup.py bdist_wheel ;\
-    # pip3 install `ls dist/*`  ;\
-    # python setup.py install  ;\
-    # # install torchvision
-    # cd /root/vision ;\
-    # python setup.py bdist_wheel ;\
-    # pip3 install `ls dist/*`  ;\
-    # python setup.py install
+
+# installing Jax with cuda -- installed aftr torch can install newer version of cuda
+# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # hugging face toolchain
 RUN pip3 install transformers;\
