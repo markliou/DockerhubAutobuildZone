@@ -30,7 +30,7 @@ jobs:
 
   published_dl-container_test:
     runs-on:
-      # - cindy
+      # - cind  y
       - gpu
     steps:
       - run: docker pull markliou/dl-container:latest
