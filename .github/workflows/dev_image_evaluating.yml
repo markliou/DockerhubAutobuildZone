@@ -9,7 +9,12 @@ jobs:
   build-and-publish:
 
     ###### dockerhub logging ######
-    runs-on: ubuntu-latest
+    runs-on:
+      # - ubuntu-latest
+      - nchc
+      # - cindy
+      # - gpu
+      # - hope
     if: github.ref == 'refs/heads/dev'
 
     steps:

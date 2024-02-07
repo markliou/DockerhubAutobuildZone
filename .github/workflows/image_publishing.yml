@@ -13,7 +13,10 @@ jobs:
 
   build-and-publish:
 
-    runs-on: ubuntu-latest
+    runs-on:
+      #- ubuntu-latest
+      - gpu
+      # - gardner
     if: github.ref == 'refs/heads/master'
 
     steps:
@@ -53,5 +56,3 @@ jobs:
     #     # file: ./python3-tensorflow-gpu/GPU/Dockerfile
     #     push: True
     #     tags: markliou/spark:latest
-
-
