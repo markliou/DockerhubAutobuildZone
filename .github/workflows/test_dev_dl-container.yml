@@ -1,4 +1,4 @@
-name: container_gpu_test
+name: dev_dl-container_gpu_test
 
 # main branch for publishing
 on:
