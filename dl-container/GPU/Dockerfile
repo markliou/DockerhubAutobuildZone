@@ -70,8 +70,7 @@ RUN apt-get update -y;\
 # test the gpu available: torch.cuda.is_available()
 # RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 COPY build_torch_from_source.sh /root/
-RUN chmod 0755 /root/build_torch_from_source.sh ;\
-    /root/build_torch_from_source.sh
+RUN /usr/bin/bash /root/build_torch_from_source.sh
 
 # installing Jax with cuda -- installed aftr torch can install newer version of cuda
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
