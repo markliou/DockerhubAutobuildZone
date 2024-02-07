@@ -4,11 +4,11 @@ name: container_gpu_test
 on:
   workflow_run:
     workflows:
-      - docker_image_evaluating_process
+      # - docker_image_building_evaluating_process
       - docker_image_publishing_process
     branches:
       - master
-      - dev
+      # - dev
     types:
       - completed
 
@@ -20,13 +20,13 @@ jobs:
   #     - name: gpu_test
   #       uses: actions/checkout@v4
 
-  dev_dl-container_test:
-    runs-on:
-      # - cindy
-      - gpu
-    steps:
-      - run: docker pull markliou/dl-container:temp
-      - run: docker run --rm --gpus all markliou/dl-container:temp gpu_test
+  # dev_dl-container_test:
+  #   runs-on:
+  #     # - cindy
+  #     - gpu
+  #   steps:
+  #     - run: docker pull markliou/dl-container:temp
+  #     - run: docker run --rm --gpus all markliou/dl-container:temp gpu_test
 
   published_dl-container_test:
     runs-on:
