@@ -1,0 +1,37 @@
+name: dev_dl-container_gpu_test
+
+# main branch for publishing
+on:
+  workflow_run:
+    workflows:
+      - docker_image_building_evaluating_process
+      # - docker_image_publishing_process
+    branches:
+      # - master
+      - dev
+    types:
+      - completed
+
+jobs:
+  # checkout:
+  #   runs-on:
+  #     - gpu
+  #   steps:
+  #     - name: gpu_test
+  #       uses: actions/checkout@v4
+
+  dev_dl-container_test:
+    runs-on:
+      # - cindy
+      - gpu
+    steps:
+      - run: docker pull markliou/dl-container:temp
+      - run: docker run --rm --gpus all markliou/dl-container:temp gpu_test
+
+  # published_dl-container_test:
+  #   runs-on:
+  #     # - cind  y
+  #     - gpu
+  #   steps:
+  #     - run: docker pull markliou/dl-container:latest
+  #     - run: docker run --rm --gpus all markliou/dl-container:latest gpu_test

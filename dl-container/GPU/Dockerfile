@@ -5,7 +5,7 @@ ARG TF_VER="2.15.0"
 # FROM tensorflow/tensorflow:1.14.0-gpu-py3
 # FROM tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:1.15.0-gpu-py3
-# FROM tensorflow/tensorflow:2.14.0-gpu 
+# FROM tensorflow/tensorflow:2.14.0-gpu
 # FROM tensorflow/tensorflow:2.15.0-gpu #2.15 cannot use cuda#2.15 cannot use cuda
 # FROM tensorflow/tensorflow:2.12.0-gpu # the pallalle dataloader can work with this version
 
@@ -16,6 +16,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 ENV XLA_PYTHON_CLIENT_PREALLOCATE=false
 ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
+ENV _GLIBCXX_USE_CXX11_ABI=1
 
 # # upgrade python to 3.11 and reinstall tensorflow
 # RUN python -m pip uninstall tensorflow -y;\
@@ -29,25 +30,16 @@ ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
 #     python3 -m pip install html5lib ;\
 #     python3 -m pip install tensorflow
 
-RUN apt update -y;\
+RUN apt-get update -y;\
     apt install tzdata -y;\
     apt install python3-opencv -y --fix-missing
 
 RUN pip install --upgrade pip
 
-# installing pytorch -- but skip install cuda related package
-# test the gpu available: torch.cuda.is_available()
-RUN pip3 install --upgrade torch torchvision torchaudio --no-deps ;\
-    pip3 install sympy triton
-
-# installing Jax with cuda
-# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --upgrade "jax[cuda11_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
 # installing keras3
 # RUN pip install --upgrade keras
 
-RUN apt update -y;\
+RUN apt-get update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install git -y;\
@@ -74,6 +66,16 @@ RUN apt update -y;\
     pip3 install dvc;\
     pip3 install pip install opencv-contrib-python
 
+# installing pytorch -- but skip install cuda related package
+# test the gpu available: torch.cuda.is_available()
+# RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+COPY build_torch_from_source.sh /root/
+RUN /usr/bin/bash /root/build_torch_from_source.sh
+
+# installing Jax with cuda -- installed aftr torch can install newer version of cuda
+# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
 # hugging face toolchain
 RUN pip3 install transformers;\
     pip3 install accelerate;\
@@ -92,7 +94,7 @@ RUN chmod 0755 /usr/local/bin/gpu_test
 RUN apt install openssh-server -y;\
     echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile ;\
     sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
-    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd 
+    sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
 # providing the public key for loggin (optional)
 RUN mkdir /root/.ssh ;\
