@@ -36,7 +36,7 @@ def check_gpu_counting_function():
     assert((np.array(jnpV * 2) == (sample * 2).astype(np.float32)).all())
 
     # test pytorch
-    print("Checking jax function ...")
+    print("Checking torch function ...")
     torchV = torch.FloatTensor(sample)
     assert((np.array((torchV * 2)) == (sample * 2).astype(np.float32)).all())
 
