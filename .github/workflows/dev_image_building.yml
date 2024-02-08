@@ -12,9 +12,9 @@ jobs:
     runs-on:
       # - ubuntu-latest
       # - nchc
-      - cindy
+      # - cindy
       # - gpu
-      # - hope
+      - hope
     if: github.ref == 'refs/heads/dev'
 
     steps:
