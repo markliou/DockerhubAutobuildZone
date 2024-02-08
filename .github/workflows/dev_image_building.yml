@@ -28,6 +28,12 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWD }}
 
     ###### building process ######
+    - run: docker pull hello-world
+    - run: docker tag hello-world markliou/dl-container:temp
+    - run: docker push markliou/dl-container:temp
+
+
+    ###### building process ######
     - name: dl-container
       uses: docker/build-push-action@v5
       with:
