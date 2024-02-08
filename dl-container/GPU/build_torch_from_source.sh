@@ -19,29 +19,29 @@ python setup.py bdist_wheel
 # pip3 install `ls dist/*`
 python setup.py install
 
-# install torch-audio
-echo "installing torch-audio..."
-cd /root
-git clone --recursive https://github.com/pytorch/audio
-cd audio
-git submodule sync
-git submodule update --init --recursive
-pip3 install -r requirements.txt
-python setup.py bdist_wheel
-# pip3 install `ls dist/*`
-python setup.py install
+# # install torch-audio
+# echo "installing torch-audio..."
+# cd /root
+# git clone --recursive https://github.com/pytorch/audio
+# cd audio
+# git submodule sync
+# git submodule update --init --recursive
+# pip3 install -r requirements.txt
+# python setup.py bdist_wheel
+# # pip3 install `ls dist/*`
+# python setup.py install
 
-# install torch-vision
-echo "installing torch-vision..."
-cd /root
-git clone --recursive https://github.com/pytorch/vision
-cd vision
-git submodule sync
-git submodule update --init --recursive
-pip3 install -r requirements.txt
-python setup.py bdist_wheel
-# pip3 install `ls dist/*`
-python setup.py install
+# # install torch-vision
+# echo "installing torch-vision..."
+# cd /root
+# git clone --recursive https://github.com/pytorch/vision
+# cd vision
+# git submodule sync
+# git submodule update --init --recursive
+# pip3 install -r requirements.txt
+# python setup.py bdist_wheel
+# # pip3 install `ls dist/*`
+# python setup.py install
 
 # cleaning the folder to reduct the volume of the image
 echo "cleaning the remains ..."

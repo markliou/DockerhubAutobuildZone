@@ -12,9 +12,9 @@ jobs:
     runs-on:
       # - ubuntu-latest
       # - nchc
-      - cindy
+      # - cindy
       # - gpu
-      # - hope
+      - hope
     if: github.ref == 'refs/heads/dev'
 
     steps:
@@ -27,6 +27,15 @@ jobs:
         username: ${{ secrets.DOCKER_ACCOUNT }}
         password: ${{ secrets.DOCKER_PASSWD }}
 
+    ###### clearning github layers process ######
+    # 有一些layers透過shell執行，有改變時不會被docker捕捉到，work round
+    # 的方法是強迫更新layers以後再往上推。這邊先用hello-world作為強迫更
+    # 新的image代表。
+    - run: docker pull hello-world
+    - run: docker tag hello-world markliou/dl-container:temp
+    - run: docker push markliou/dl-container:temp
+
+
     ###### building process ######
     - name: dl-container
       uses: docker/build-push-action@v5
@@ -35,3 +44,4 @@ jobs:
         # file: ./dl-container/GPU/Dockerfile
         push: True
         tags: markliou/dl-container:temp
+        no-cache: True

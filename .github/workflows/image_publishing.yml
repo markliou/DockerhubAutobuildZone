@@ -41,6 +41,7 @@ jobs:
         # file: ./dl-container/GPU/Dockerfile
         push: True
         tags: markliou/dl-container:latest , markliou/dl-container:${{ steps.date.outputs.date }}
+        no-cache: True
 
     - name: docker-in-docker
       uses: docker/build-push-action@v5
