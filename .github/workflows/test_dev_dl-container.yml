@@ -26,7 +26,9 @@ jobs:
       - gpu
     steps:
       - run: docker pull markliou/dl-container:temp
+      - run: docker rmi markliou/dl-container:temp
       - run: docker run --rm --gpus all markliou/dl-container:temp gpu_test
+      - run: docker rmi -f markliou/dl-container:temp
 
   # published_dl-container_test:
   #   runs-on:
