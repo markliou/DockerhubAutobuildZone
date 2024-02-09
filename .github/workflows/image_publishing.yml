@@ -34,6 +34,7 @@ jobs:
       run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
     ###### building process ######
+    # cleaning dockerhub layers
     - run: docker pull hello-world
     - run: docker pull markliou/dl-container:latest
     - run: docker tag markliou/dl-container:latest markliou/dl-container:${{ steps.date.outputs.date }}
@@ -43,6 +44,7 @@ jobs:
     - run: docker tag hello-world markliou/dl-container:${{ steps.date.outputs.date }}
     - run: docker push markliou/dl-container:latest
     - run: docker push markliou/dl-container:${{ steps.date.outputs.date }}
+
     - name: dl-container
       uses: docker/build-push-action@v5
       with:

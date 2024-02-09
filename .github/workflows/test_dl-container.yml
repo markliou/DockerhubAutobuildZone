@@ -34,4 +34,7 @@ jobs:
       - gpu
     steps:
       - run: docker pull markliou/dl-container:latest
+      - run: docker tag markliou/dl-container:latest markliou/dl-container:t
+      - run: docker rmi -f markliou/dl-container:latest markliou/dl-container:t
       - run: docker run --rm --gpus all markliou/dl-container:latest gpu_test
+      - run: docker rmi -f markliou/dl-container:latest
