@@ -15,8 +15,9 @@ jobs:
 
     runs-on:
       #- ubuntu-latest
-      - gpu
+      # - gpu
       # - gardner
+      - hope
     if: github.ref == 'refs/heads/master'
 
     steps:
