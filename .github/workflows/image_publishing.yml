@@ -17,7 +17,8 @@ jobs:
       #- ubuntu-latest
       # - gpu
       # - gardner
-      - hope
+      - cindy
+      # - hope
     if: github.ref == 'refs/heads/master'
 
     steps:
