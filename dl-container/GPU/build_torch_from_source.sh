@@ -3,7 +3,7 @@
 export _GLIBCXX_USE_CXX11_ABI=1
 export TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0"
 
-apt update -y ; apt install git cuda-toolkit-12-3 -y
+apt update -y ; apt install git cuda-toolkit-12-3  cudnn9-cuda-12 -y ; ldconfig
 
 # install torch
 echo "installing pytorch..."
@@ -17,7 +17,7 @@ pip3 install cmake ninja mkl-static mkl-include
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
 # pip3 install `ls dist/*`
-python setup.py install
+CUDA_HOME=/usr/local/cuda python setup.py install
 
 # # install torch-audio
 # echo "installing torch-audio..."

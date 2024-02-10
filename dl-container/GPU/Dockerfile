@@ -17,6 +17,7 @@ ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 ENV XLA_PYTHON_CLIENT_PREALLOCATE=false
 ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
 ENV _GLIBCXX_USE_CXX11_ABI=1
+ENV CUDA_HOME=/usr/local/cuda
 
 # # upgrade python to 3.11 and reinstall tensorflow
 # RUN python -m pip uninstall tensorflow -y;\
@@ -31,8 +32,8 @@ ENV _GLIBCXX_USE_CXX11_ABI=1
 #     python3 -m pip install tensorflow
 
 RUN apt-get update -y;\
-    apt install tzdata -y;\
-    apt install python3-opencv -y --fix-missing
+    apt-get install tzdata -y;\
+    apt-get install python3-opencv -y --fix-missing
 
 RUN pip install --upgrade pip
 
@@ -72,15 +73,15 @@ RUN apt-get update -y;\
 COPY build_torch_from_source.sh /root/
 RUN /usr/bin/bash /root/build_torch_from_source.sh
 
+# hugging face toolchain
+RUN pip3 install --no-cache-dir transformers;\
+    pip3 install --no-cache-dir accelerate;\
+    pip3 install --no-cache-dir -U "huggingface_hub[cli]";\
+    git config --global credential.helper store
+
 # installing Jax with cuda -- installed aftr torch can install newer version of cuda
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
-# hugging face toolchain
-RUN pip3 install transformers;\
-    pip3 install accelerate;\
-    pip3 install -U "huggingface_hub[cli]";\
-    git config --global credential.helper store
+RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # the gpu test script: Tensorflow, Jax, pyTorch
 COPY gpu_test.py /usr/local/bin/gpu_test
@@ -91,7 +92,7 @@ RUN chmod 0755 /usr/local/bin/gpu_test
 #     pip3 install --upgrade tensorflow-gpu==1.14
 
 # SSH server, using "root" and password is "docker"
-RUN apt install openssh-server -y;\
+RUN apt-get install openssh-server -y;\
     echo 'root:docker' | chpasswd && mkdir /var/run/sshd && echo "export VISIBLE=now" >> /etc/profile ;\
     sed -i 's/\#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config ;\
     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
