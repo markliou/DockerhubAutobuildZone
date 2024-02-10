@@ -3,7 +3,7 @@
 export _GLIBCXX_USE_CXX11_ABI=1
 export TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0"
 
-apt update -y ; apt install git cuda-toolkit-12-3 -y
+apt update -y ; apt install git cuda-toolkit-12-3  cudnn9-cuda-12 -y ; ldconfig
 
 # install torch
 echo "installing pytorch..."
