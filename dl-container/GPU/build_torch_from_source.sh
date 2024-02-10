@@ -17,7 +17,7 @@ pip3 install cmake ninja mkl-static mkl-include
 pip3 install -r requirements.txt
 python setup.py bdist_wheel
 # pip3 install `ls dist/*`
-python setup.py install
+CUDA_HOME=/usr/local/cuda python setup.py install
 
 # # install torch-audio
 # echo "installing torch-audio..."

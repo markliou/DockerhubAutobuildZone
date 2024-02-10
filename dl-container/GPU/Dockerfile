@@ -17,6 +17,7 @@ ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 ENV XLA_PYTHON_CLIENT_PREALLOCATE=false
 ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
 ENV _GLIBCXX_USE_CXX11_ABI=1
+ENV CUDA_HOME=/usr/local/cuda
 
 # # upgrade python to 3.11 and reinstall tensorflow
 # RUN python -m pip uninstall tensorflow -y;\
