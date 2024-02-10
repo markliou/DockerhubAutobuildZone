@@ -72,15 +72,15 @@ RUN apt-get update -y;\
 COPY build_torch_from_source.sh /root/
 RUN /usr/bin/bash /root/build_torch_from_source.sh
 
-# installing Jax with cuda -- installed aftr torch can install newer version of cuda
-# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-
 # hugging face toolchain
 RUN pip3 install transformers;\
     pip3 install accelerate;\
     pip3 install -U "huggingface_hub[cli]";\
     git config --global credential.helper store
+
+# installing Jax with cuda -- installed aftr torch can install newer version of cuda
+# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+RUN pip3 install --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 # the gpu test script: Tensorflow, Jax, pyTorch
 COPY gpu_test.py /usr/local/bin/gpu_test
