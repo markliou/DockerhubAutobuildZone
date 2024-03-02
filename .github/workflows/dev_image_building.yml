@@ -33,7 +33,7 @@ jobs:
     # 新的image代表。
     - run: docker pull hello-world
     - run: docker pull markliou/dl-container:temp
-    - run: docker rmi markliou/dl-container:temp
+    - run: docker rmi -f markliou/dl-container:temp
     - run: docker tag hello-world markliou/dl-container:temp
     - run: docker push markliou/dl-container:temp
 

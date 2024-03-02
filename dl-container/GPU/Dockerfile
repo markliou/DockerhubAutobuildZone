@@ -37,9 +37,6 @@ RUN apt-get update -y;\
 
 RUN pip install --upgrade pip
 
-# installing keras3
-# RUN pip install --upgrade keras
-
 RUN apt-get update -y;\
     apt install python3-pip -y;\
     apt install python3-tk -y;\
