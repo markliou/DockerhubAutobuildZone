@@ -80,6 +80,20 @@ RUN pip3 install --no-cache-dir transformers;\
 # RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_pip]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
+# fix the ldconfig promblem
+RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
+    ln -s /usr/local/lib/libtbbmalloc_proxy.so.2.real /usr/local/lib/libtbbmalloc_proxy.so.2 ;\
+    mv /usr/local/lib/libtbbbind_2_0.so.3 /usr/local/lib/libtbbbind_2_0.so.3.real ;\
+    ln -s /usr/local/lib/libtbbbind_2_0.so.3.real /usr/local/lib/libtbbbind_2_0.so.3 ;\
+    mv /usr/local/lib/libtbbbind_2_5.so.3 /usr/local/lib/libtbbbind_2_5.so.3.real ;\
+    ln -s /usr/local/lib/libtbbbind_2_5.so.3.real /usr/local/lib/libtbbbind_2_5.so.3 ;\
+    mv /usr/local/lib/libtbbmalloc.so.2 /usr/local/lib/libtbbmalloc.so.2.real ;\
+    ln -s /usr/local/lib/libtbbmalloc.so.2.real /usr/local/lib/libtbbmalloc.so.2 ;\
+    mv /usr/local/lib/libtbb.so.12 /usr/local/lib/libtbb.so.12.real ;\
+    ln -s /usr/local/lib/libtbb.so.12.real /usr/local/lib/libtbb.so.12 ;\
+    mv /usr/local/lib/libtbbbind.so.3 /usr/local/lib/libtbbbind.so.3.real ;\
+    ln -s /usr/local/lib/libtbbbind.so.3.real /usr/local/lib/libtbbbind.so.3
+
 # the gpu test script: Tensorflow, Jax, pyTorch
 COPY gpu_test.py /usr/local/bin/gpu_test
 RUN chmod 0755 /usr/local/bin/gpu_test
