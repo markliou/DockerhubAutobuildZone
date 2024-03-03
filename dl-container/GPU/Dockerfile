@@ -92,7 +92,11 @@ RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.
     mv /usr/local/lib/libtbb.so.12 /usr/local/lib/libtbb.so.12.real ;\
     ln -s /usr/local/lib/libtbb.so.12.real /usr/local/lib/libtbb.so.12 ;\
     mv /usr/local/lib/libtbbbind.so.3 /usr/local/lib/libtbbbind.so.3.real ;\
-    ln -s /usr/local/lib/libtbbbind.so.3.real /usr/local/lib/libtbbbind.so.3
+    ln -s /usr/local/lib/libtbbbind.so.3.real /usr/local/lib/libtbbbind.so.3 ;\
+    mv /lib/x86_64-linux-gnu/libcudadebugger.so.1 /lib/x86_64-linux-gnu/libcudadebugger.so.1.real ;\
+    ln -s /lib/x86_64-linux-gnu/libcudadebugger.so.1.real /lib/x86_64-linux-gnu/libcudadebugger.so.1 ;\
+    mv /lib/x86_64-linux-gnu/libcuda.so.1 /lib/x86_64-linux-gnu/libcuda.so.1.real ;\
+    ln -s /lib/x86_64-linux-gnu/libcuda.so.1.real /lib/x86_64-linux-gnu/libcuda.so.1
 
 # the gpu test script: Tensorflow, Jax, pyTorch
 COPY gpu_test.py /usr/local/bin/gpu_test
