@@ -1,4 +1,4 @@
-ARG TF_VER="2.16.0rc0"
+ARG TF_VER="2.16.1"
 
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:latest-gpu-py3
