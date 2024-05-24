@@ -30,8 +30,8 @@ jobs:
 
   published_dl-container_test:
     runs-on:
-      - cindy
-      # - gpu
+      # - cindy
+      - poca
     steps:
       - run: docker pull markliou/dl-container:latest
       - run: docker tag markliou/dl-container:latest markliou/dl-container:t

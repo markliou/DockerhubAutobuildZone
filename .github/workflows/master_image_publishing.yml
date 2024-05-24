@@ -15,9 +15,9 @@ jobs:
 
     runs-on:
       #- ubuntu-latest
-      # - gpu
+      - poca
       # - gardner
-      - cindy
+      # - cindy
       # - hope
     if: github.ref == 'refs/heads/master'
 
