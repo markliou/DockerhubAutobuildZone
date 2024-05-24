@@ -12,8 +12,8 @@ jobs:
     runs-on:
       # - ubuntu-latest
       # - nchc
-      - cindy
-      # - gpu
+      # - cindy
+      - poca
       # - hope
     if: github.ref == 'refs/heads/dev'
 
