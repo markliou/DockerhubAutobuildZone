@@ -41,7 +41,7 @@ jobs:
 
   published_dind_test:
     runs-on:
-      - cindy
-      # - gpu
+      # - cindy
+      - poca
     steps:
       - run: python3 -c "import subprocess ; subprocess.run('docker pull markliou/dind', shell=True) ; subprocess.check_call('docker run -d --rm --name tst markliou/dind', shell=True) ; subprocess.run('docker stop tst', shell=True)"
