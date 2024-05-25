@@ -15,10 +15,10 @@ jobs:
 
     runs-on:
       #- ubuntu-latest
-      - poca
+      # - poca
       # - gardner
       # - cindy
-      # - hope
+      - hope
     if: github.ref == 'refs/heads/master'
 
     steps:
