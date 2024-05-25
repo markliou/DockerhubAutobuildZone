@@ -13,8 +13,8 @@ jobs:
       # - ubuntu-latest
       # - nchc
       # - cindy
-      - poca
-      # - hope
+      # - poca
+      - hope
     if: github.ref == 'refs/heads/dev'
 
     steps:

@@ -23,7 +23,8 @@ jobs:
   dev_dl-container_test:
     runs-on:
       # - cindy
-      - poca
+      # - poca
+      - hope
     steps:
       - run: docker pull markliou/dl-container:temp
       - run: docker rmi -f markliou/dl-container:temp
@@ -33,7 +34,8 @@ jobs:
   dev_dind_test:
     runs-on:
       # - cindy
-      - poca
+      #- poca
+      - hope
     steps:
       - run: python3 -c "import subprocess ; subprocess.run('docker pull markliou/dind', shell=True) ; subprocess.check_call('docker run -d --rm --name tst markliou/dind', shell=True) ; subprocess.run('docker stop tst', shell=True)"
 
