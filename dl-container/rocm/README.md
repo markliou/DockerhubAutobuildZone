@@ -9,3 +9,4 @@ AMD的GPU可以透過ROCm運算。AMD也把HIP（Heterogeneous Integration Platf
 * 安裝上，依照[quick start](https://rocm.docs.amd.com/projects/install-on-linux/en/latest/tutorial/quick-start.html)，到了rocm會有部分package無法安裝。如果ROCm如架構圖所說，那應該是可以直接使用Container中的版本而無須在host上安裝。因此安裝到amdgpu-dkms就直接往docker走。
 * 跑docker會需要把系統的/dev/dri和/dev/kfd資料夾掛到docker裡面。這邊會有問題(如果顯卡已經驅動了，就會有/dev/dri資料夾。但/dev/kfd不一定會出現)。如果找不到/dev/kfd，可以使用[sudo modprobe amdgpu](https://golang.0voice.com/?id=4676)
 * HIP在container裡面的運作，看來還沒有辦法真正跨到NV的顯卡上。後續會再拿AMD顯卡測試看看。
+* 官方支援的消費及險卡清單主要在7900型號之後。很多比較老舊的顯卡(RX560、RX570、RX580、RX590)支援在新的repo當中都已經移除。[參考資料](https://newtoypia.blogspot.com/2021/04/rocm-radeon-rx580-gpu.html)
