@@ -53,7 +53,7 @@ RUN apt-get update -y;\
     pip3 install h5py;\
     pip3 install pandas;\
     pip3 install grpcio;\
-    pip3 install Flask;\
+    # pip3 install Flask;\
     # pip3 install futures;\
     pip3 install redis;\
     pip3 install scikit-image;\
@@ -62,7 +62,7 @@ RUN apt-get update -y;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
-    pip3 install pip install opencv-contrib-python
+    pip3 install opencv-contrib-python
 
 # installing pytorch -- but skip install cuda related package
 # test the gpu available: torch.cuda.is_available()
