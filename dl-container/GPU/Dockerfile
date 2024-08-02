@@ -113,15 +113,15 @@ RUN apt-get install openssh-server -y;\
     sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
 
 # VS code extensions
-RUN curl -fsSL https://code-server.dev/install.sh | sh
-RUN code-server --install-extension ms-python.python \
-                --install-extension ms-ceintl.vscode-language-pack-zh-hant \
-                --install-extension ms-python.debugpy \
-                --install-extension ms-toolsai.jupyter \
-                --install-extension ms-toolsai.jupyter-keymap \
-                --install-extension ms-toolsai.jupyter-renderers \
-                --install-extension ms-toolsai.vscode-jupyter-cell-tags \
-                --install-extension ms-toolsai.vscode-jupyter-slideshow
+# RUN curl -fsSL https://code-server.dev/install.sh | sh
+# RUN code-server --install-extension ms-python.python \
+#                 --install-extension ms-ceintl.vscode-language-pack-zh-hant \
+#                 --install-extension ms-python.debugpy \
+#                 --install-extension ms-toolsai.jupyter \
+#                 --install-extension ms-toolsai.jupyter-keymap \
+#                 --install-extension ms-toolsai.jupyter-renderers \
+#                 --install-extension ms-toolsai.vscode-jupyter-cell-tags \
+#                 --install-extension ms-toolsai.vscode-jupyter-slideshow
 
 
 
