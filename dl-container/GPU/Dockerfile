@@ -55,7 +55,7 @@ RUN apt-get update -y;\
     pip3 install grpcio;\
     # pip3 install Flask;\
     # pip3 install futures;\
-    pip3 install keras;\
+    pip3 install --upgrade keras;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
