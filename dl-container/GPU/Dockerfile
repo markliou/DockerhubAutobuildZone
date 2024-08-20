@@ -55,6 +55,7 @@ RUN apt-get update -y;\
     pip3 install grpcio;\
     # pip3 install Flask;\
     # pip3 install futures;\
+    pip3 install keras;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
@@ -64,21 +65,31 @@ RUN apt-get update -y;\
     pip3 install dvc;\
     pip3 install opencv-contrib-python
 
-# installing pytorch -- but skip install cuda related package
-# test the gpu available: torch.cuda.is_available()
-# RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
-COPY build_torch_from_source.sh /root/
-RUN /usr/bin/bash /root/build_torch_from_source.sh
 
-# hugging face toolchain
+
+#####  pytroch installation #####
+# test the gpu available: torch.cuda.is_available()
+
+## installing pytorch -- but skip install cuda related package
+# COPY build_torch_from_source.sh /root/
+# RUN /usr/bin/bash /root/build_torch_from_source.sh
+
+## installing pytorch directly from pip
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+
+##### hugging face toolchain #####
 RUN pip3 install --no-cache-dir transformers;\
     pip3 install --no-cache-dir accelerate;\
     pip3 install --no-cache-dir -U "huggingface_hub[cli]";\
     git config --global credential.helper store
 
-# installing Jax with cuda -- installed aftr torch can install newer version of cuda
-# RUN pip install "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
-RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+#####  jax installation #####
+## installing Jax with cuda -- installed aftr torch can install newer version of cuda
+# RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
+## installing jax directly from pip
+RUN pip install "jax[cuda12]"
 
 # fix the ldconfig promblem
 RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
