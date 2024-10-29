@@ -79,7 +79,7 @@ RUN apt-get update -y;\
 
 ##### hugging face toolchain #####
 RUN pip3 install --no-cache-dir transformers;\
-    pip3 install --no-cache-dir accelerate;\
+    # pip3 install --no-cache-dir accelerate;\
     pip3 install --no-cache-dir -U "huggingface_hub[cli]";\
     git config --global credential.helper store
 
