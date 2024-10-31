@@ -63,6 +63,7 @@ RUN apt-get update -y;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
+    pip3 install tf-models-nightly ;\
     pip3 install opencv-contrib-python
 
 
