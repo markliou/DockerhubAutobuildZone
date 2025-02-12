@@ -1,4 +1,5 @@
-ARG TF_VER="2.18.0"
+# ARG TF_VER="2.18.0"nightly-gpu
+ARG TF_VER="nightly"
 ARG NV_VER="24.12-tf2-py3"
 
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
@@ -10,8 +11,8 @@ ARG NV_VER="24.12-tf2-py3"
 # FROM tensorflow/tensorflow:2.15.0-gpu #2.15 cannot use cuda#2.15 cannot use cuda
 # FROM tensorflow/tensorflow:2.12.0-gpu # the pallalle dataloader can work with this version
 
-# FROM tensorflow/tensorflow:${TF_VER}-gpu
-FROM nvcr.io/nvidia/tensorflow:${NV_VER}
+FROM tensorflow/tensorflow:${TF_VER}-gpu
+# FROM nvcr.io/nvidia/tensorflow:${NV_VER}
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -65,6 +66,7 @@ RUN apt-get update -y;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
+    pip3 install tf-models-nightly ;\
     pip3 install opencv-contrib-python
 
 
