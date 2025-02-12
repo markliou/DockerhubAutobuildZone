@@ -1,5 +1,5 @@
-# ARG TF_VER="2.18.0"nightly-gpu
-ARG TF_VER="nightly"
+ARG TF_VER="2.18.0"
+# ARG TF_VER="nightly"
 ARG NV_VER="24.12-tf2-py3"
 
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
