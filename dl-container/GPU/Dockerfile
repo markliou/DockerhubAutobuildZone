@@ -1,4 +1,4 @@
-ARG TF_VER="2.18.0"
+ARG TF_VER="2.17.0"
 # ARG TF_VER="nightly"
 ARG NV_VER="25.01-tf2-py3"
 
@@ -93,8 +93,8 @@ RUN pip3 install --no-cache-dir transformers;\
 # RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 ## installing jax directly from pip
-RUN pip install -U "jax[cuda12]"
-# RUN pip install -U "jax[cuda12_local]"
+# RUN pip install -U "jax[cuda12]"
+RUN pip install -U "jax[cuda12_local]"
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
