@@ -1,6 +1,6 @@
-# ARG TF_VER="2.18.0"nightly-gpu
+# ARG TF_VER="2.18.0"
 ARG TF_VER="nightly"
-ARG NV_VER="24.12-tf2-py3"
+ARG NV_VER="25.01-tf2-py3"
 
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:latest-gpu-py3
@@ -62,11 +62,11 @@ RUN apt-get update -y;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
-    pip3 install tensorflow-addons;\
+    # pip3 install tensorflow-addons;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
-    pip3 install tf-models-nightly ;\
+    # pip3 install tf-models-nightly ;\
     pip3 install opencv-contrib-python
 
 
@@ -94,6 +94,7 @@ RUN pip3 install --no-cache-dir transformers;\
 
 ## installing jax directly from pip
 RUN pip install -U "jax[cuda12]"
+# RUN pip install -U "jax[cuda12_local]"
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
