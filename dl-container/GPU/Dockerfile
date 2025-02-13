@@ -94,7 +94,7 @@ RUN pip3 install --no-cache-dir transformers;\
 
 ## installing jax directly from pip
 # RUN pip install -U "jax[cuda12]"
-RUN pip install -U "jax[cuda12_local]"
+RUN pip3 install -U "jax[cuda12_local]"
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
