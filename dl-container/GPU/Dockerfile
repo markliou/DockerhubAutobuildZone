@@ -11,8 +11,8 @@ ARG NV_VER="25.01-tf2-py3"
 # FROM tensorflow/tensorflow:2.15.0-gpu #2.15 cannot use cuda#2.15 cannot use cuda
 # FROM tensorflow/tensorflow:2.12.0-gpu # the pallalle dataloader can work with this version
 
-FROM tensorflow/tensorflow:${TF_VER}-gpu
-# FROM nvcr.io/nvidia/tensorflow:${NV_VER}
+# FROM tensorflow/tensorflow:${TF_VER}-gpu
+FROM nvcr.io/nvidia/tensorflow:${NV_VER}
 
 
 ENV DEBIAN_FRONTEND=noninteractive
