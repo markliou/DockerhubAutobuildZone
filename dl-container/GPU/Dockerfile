@@ -1,4 +1,4 @@
-ARG TF_VER="2.17.0"
+ARG TF_VER="2.18.0"
 # ARG TF_VER="nightly"
 ARG NV_VER="25.01-tf2-py3"
 
@@ -11,8 +11,8 @@ ARG NV_VER="25.01-tf2-py3"
 # FROM tensorflow/tensorflow:2.15.0-gpu #2.15 cannot use cuda#2.15 cannot use cuda
 # FROM tensorflow/tensorflow:2.12.0-gpu # the pallalle dataloader can work with this version
 
-# FROM tensorflow/tensorflow:${TF_VER}-gpu
-FROM nvcr.io/nvidia/tensorflow:${NV_VER}
+FROM tensorflow/tensorflow:${TF_VER}-gpu
+# FROM nvcr.io/nvidia/tensorflow:${NV_VER}
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -92,8 +92,8 @@ RUN pip3 install --no-cache-dir transformers;\
 # RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 ## installing jax directly from pip
-# RUN pip install -U "jax[cuda12]"
-RUN pip3 install -U "jax[cuda12_local]"
+RUN pip3 install -U "jax[cuda12]"
+# RUN pip3 install -U "jax[cuda12_local]"
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
