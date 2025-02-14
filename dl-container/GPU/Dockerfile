@@ -41,13 +41,13 @@ RUN apt-get update -y;\
 RUN pip install --upgrade pip
 
 RUN apt-get update -y;\
-    apt install python3-pip -y;\
+    # apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install git -y;\
     apt install vim -y;\
     apt install wget -y;\
     apt install -y libsm6 libxext6 ;\
-    easy_install pip ;\
+    # easy_install pip ;\
     pip3 install tqdm;\
     pip3 install Pillow;\
     pip3 install scipy;\
@@ -62,7 +62,6 @@ RUN apt-get update -y;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
-    # pip3 install tensorflow-addons;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
