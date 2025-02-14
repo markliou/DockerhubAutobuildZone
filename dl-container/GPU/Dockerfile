@@ -1,5 +1,5 @@
-# ARG TF_VER="2.18.0"
-ARG TF_VER="nightly"
+ARG TF_VER="2.18.0"
+# ARG TF_VER="nightly"
 ARG NV_VER="25.01-tf2-py3"
 
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
@@ -41,13 +41,13 @@ RUN apt-get update -y;\
 RUN pip install --upgrade pip
 
 RUN apt-get update -y;\
-    apt install python3-pip -y;\
+    # apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install git -y;\
     apt install vim -y;\
     apt install wget -y;\
     apt install -y libsm6 libxext6 ;\
-    easy_install pip ;\
+    # easy_install pip ;\
     pip3 install tqdm;\
     pip3 install Pillow;\
     pip3 install scipy;\
@@ -62,7 +62,6 @@ RUN apt-get update -y;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
-    # pip3 install tensorflow-addons;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
@@ -93,8 +92,8 @@ RUN pip3 install --no-cache-dir transformers;\
 # RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 ## installing jax directly from pip
-RUN pip install -U "jax[cuda12]"
-# RUN pip install -U "jax[cuda12_local]"
+RUN pip3 install -U "jax[cuda12]"
+# RUN pip3 install -U "jax[cuda12_local]"
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
