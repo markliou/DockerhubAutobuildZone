@@ -1,4 +1,6 @@
 ARG TF_VER="2.18.0"
+# ARG TF_VER="nightly"
+ARG NV_VER="25.01-tf2-py3"
 
 #FROM gcr.io/tensorflow/tensorflow:latest-gpu
 # FROM tensorflow/tensorflow:latest-gpu-py3
@@ -10,6 +12,7 @@ ARG TF_VER="2.18.0"
 # FROM tensorflow/tensorflow:2.12.0-gpu # the pallalle dataloader can work with this version
 
 FROM tensorflow/tensorflow:${TF_VER}-gpu
+# FROM nvcr.io/nvidia/tensorflow:${NV_VER}
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -38,13 +41,13 @@ RUN apt-get update -y;\
 RUN pip install --upgrade pip
 
 RUN apt-get update -y;\
-    apt install python3-pip -y;\
+    # apt install python3-pip -y;\
     apt install python3-tk -y;\
     apt install git -y;\
     apt install vim -y;\
     apt install wget -y;\
     apt install -y libsm6 libxext6 ;\
-    easy_install pip ;\
+    # easy_install pip ;\
     pip3 install tqdm;\
     pip3 install Pillow;\
     pip3 install scipy;\
@@ -59,10 +62,10 @@ RUN apt-get update -y;\
     pip3 install redis;\
     pip3 install scikit-image;\
     pip3 install tensorflow-datasets;\
-    pip3 install tensorflow-addons;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
+    # pip3 install tf-models-nightly ;\
     pip3 install opencv-contrib-python
 
 
@@ -89,7 +92,8 @@ RUN pip3 install --no-cache-dir transformers;\
 # RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 ## installing jax directly from pip
-RUN pip install "jax[cuda12]"
+RUN pip3 install -U "jax[cuda12]"
+# RUN pip3 install -U "jax[cuda12_local]"
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
@@ -143,7 +147,7 @@ RUN mkdir /root/.ssh ;\
     chmod 644 /root/.ssh/authorized_keys ;\
     echo ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDKgLR7W2eqrB3SOKbKr5wom8ZmhAPKwXiCd+H+9GKeG1uxCYPJbRoMXBG+8ot/pyyk7ObVpJvTxkPYhKkc1j2LGsgJ2O8AMo1t0PYGn0Lr5UdnxwnBjuxOZk9cRXAlfhVQkYLwRP+47+JYEHUUiuAKxxmfiuEVag8yrpw9BrB86XdR7bTqw8bAn8h1t1LYmAEc/Bh9GAWQuu7TDO0d6ymM1uygioYQrvy76mmK4zlbuVXqTLUUF5TjmJvZHjbjMDUvnr8P5DELo23VWBSP64CRLDSD3Q0l1l+X7zwuIc5H99aDg/x8txzfynjrP1P2Ae4sZBLLnaKDtZF2zaiTOJm08eFQ5x/xEByR8Lo2K590DwhGBARQStLbXtjb4B5rS9CmkE0+DWX6Mg9yrmmQmFWCNo3NTYn7xx/S56E5IYJlXdFbIO8BfAoNaLx2LdJldUklKctPyAEvtIDMCuEwVZTYwXJT7AFZ1KClp0nbP3dl20PkYQRzivWyA38SaSu7fg0= markliou@markliou-ZBPDuo >> /root/.ssh/authorized_keys
 
-RUN mkdir /workspace
+# RUN mkdir /workspace
 WORKDIR /workspace
 
 # IPython
