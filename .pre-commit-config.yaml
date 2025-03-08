@@ -15,4 +15,14 @@ repos:
     hooks:
     -   id: ggshield
         language_version: python3
-        stages: [commit]
+        stages: [pre-commit]
+
+-   repo: local
+    hooks:
+    -   id: run-pytest
+        name: Run pytest
+        entry: pytest tests/test_dl_container.py
+        language: system
+        types: [python]
+        pass_filenames: false
+        always_run: true
