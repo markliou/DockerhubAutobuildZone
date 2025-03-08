@@ -14,11 +14,11 @@ jobs:
   build-and-publish:
 
     runs-on:
-      #- ubuntu-latest
+      - ubuntu-latest
       # - poca
       # - gardner
       # - cindy
-      - hope
+      # - hope
     if: github.ref == 'refs/heads/master'
 
     steps:

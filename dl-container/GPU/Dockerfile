@@ -95,6 +95,10 @@ RUN pip3 install --no-cache-dir transformers;\
 RUN pip3 install -U "jax[cuda12]"
 # RUN pip3 install -U "jax[cuda12_local]"
 
+# install the jax related tools
+RUN pip3 install flax ;\
+    pip3 install optax
+
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
 #     ln -s /usr/local/lib/libtbbmalloc_proxy.so.2.real /usr/local/lib/libtbbmalloc_proxy.so.2 ;\
