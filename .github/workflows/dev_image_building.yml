@@ -10,11 +10,11 @@ jobs:
 
     ###### dockerhub logging ######
     runs-on:
-      # - ubuntu-latest
+      - ubuntu-latest
       # - nchc
       # - cindy
       # - poca
-      - hope
+      # - hope
     if: github.ref == 'refs/heads/dev'
 
     steps:
