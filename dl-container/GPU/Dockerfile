@@ -34,7 +34,8 @@ ENV CUDA_HOME=/usr/local/cuda
 #     python3 -m pip install html5lib ;\
 #     python3 -m pip install tensorflow
 
-RUN apt-get update -y;\
+RUN echo "nameserver 1.1.1.1" | tee -a /etc/resolv.conf ;\
+    apt-get update -y;\
     apt-get install tzdata -y;\
     apt-get install python3-opencv -y --fix-missing
 
@@ -65,6 +66,7 @@ RUN apt-get update -y;\
     pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
+    pip3 install virtualenv;\
     # pip3 install tf-models-nightly ;\
     pip3 install opencv-contrib-python
 
@@ -78,7 +80,13 @@ RUN apt-get update -y;\
 # RUN /usr/bin/bash /root/build_torch_from_source.sh
 
 ## installing pytorch directly from pip
-# RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+## installing pytorch in virtualenv. Using the dl-container py package as the lib base
+# RUN virtualenv --system-site-packages /torch_env;\
+#     echo 'alias torchdev="source /torch_env/bin/activate"' >> /root/.bashrc && \
+#     echo 'alias torchdev="source /torch_env/bin/activate"' >> /etc/bash.bashrc ;\
+#     /torch_env/bin/pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128 &&\
+#     echo 'export LD_LIBRARY_PATH="/torch_env/lib/python3.x/site-packages/torch/lib:$LD_LIBRARY_PATH"' >> /torch_env/bin/activate
 
 ##### hugging face toolchain #####
 RUN pip3 install --no-cache-dir transformers;\
