@@ -4,7 +4,7 @@ import numpy as np
 import tensorflow as tf
 import jax
 import jax.numpy as jnp
-#import torch
+import torch
 
 
 def check_tf():
@@ -37,14 +37,14 @@ def check_torch():
     sample = np.array([.1, .2, .3])
     print("Checking torch function ...")
     torchV = torch.FloatTensor(sample)
-    assert((np.array((torchV * 2)) == (sample * 2).astype(np.float32)).all())
+    assert(((torchV * 2).numpy() == (sample * 2).astype(np.float32)).all())
 
 
 
 def main():
     check_tf()
     check_jax()
-    #check_torch()
+    check_torch()
 
 if __name__ == "__main__":
     main()
