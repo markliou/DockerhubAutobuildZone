@@ -1,4 +1,4 @@
-ARG TF_VER="2.19.0"
+ARG TF_VER="2.20.0"
 # ARG TF_VER="nightly"
 ARG NV_VER="25.01-tf2-py3"
 
