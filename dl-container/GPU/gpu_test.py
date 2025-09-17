@@ -1,7 +1,7 @@
-#!/usr/bin/python3
+#!/opt/conda/bin/python
 # -*- coding: utf-8 -*-
 import numpy as np
-import tensorflow as tf
+# import tensorflow as tf
 import jax
 import jax.numpy as jnp
 import torch
@@ -42,7 +42,7 @@ def check_torch():
 
 
 def main():
-    check_tf()
+    # check_tf()
     check_jax()
     check_torch()
 

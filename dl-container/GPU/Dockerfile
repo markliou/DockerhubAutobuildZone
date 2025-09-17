@@ -1,15 +1,17 @@
 # ARG TF_VER="2.20.0"
 # ARG TF_VER="nightly"
 # ARG NV_VER="25.01-tf2-py3"
+ARG PT_VER="2.8.0"
 
 
 # FROM tensorflow/tensorflow:${TF_VER}-gpu
 # FROM nvcr.io/nvidia/tensorflow:${NV_VER}
-FROM tensorflow/tensorflow@sha256:35de2ad3c8479cbf4d94b1804e2430aad16593676d6eba4f6b3216ce29aee60a
+# FROM tensorflow/tensorflow@sha256:35de2ad3c8479cbf4d94b1804e2430aad16593676d6eba4f6b3216ce29aee60a
+FROM pytorch/pytorch:${PT_VER}-cuda12.9-cudnn9-devel
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TF_FORCE_GPU_ALLOW_GROWTH=true
+# ENV TF_FORCE_GPU_ALLOW_GROWTH=true
 ENV XLA_PYTHON_CLIENT_PREALLOCATE=false
 ENV XLA_PYTHON_CLIENT_ALLOCATOR=platform
 ENV _GLIBCXX_USE_CXX11_ABI=1
@@ -52,11 +54,11 @@ RUN apt-get update -y;\
     pip3 install grpcio;\
     # pip3 install Flask;\
     # pip3 install futures;\
-    pip3 install --upgrade keras;\
+    # pip3 install --upgrade keras;\
     pip3 install redis;\
     pip3 install scikit-image;\
-    pip3 install tensorflow-datasets;\
-    pip3 install tensorflow-probability;\
+    # pip3 install tensorflow-datasets;\
+    # pip3 install tensorflow-probability;\
     pip3 install matplotlib;\
     pip3 install dvc;\
     pip3 install virtualenv;\
@@ -73,7 +75,7 @@ RUN apt-get update -y;\
 # RUN /usr/bin/bash /root/build_torch_from_source.sh
 
 ## installing pytorch directly from pip
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+# RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
 ## installing pytorch in virtualenv. Using the dl-container py package as the lib base
 # RUN virtualenv --system-site-packages /torch_env;\
 #     echo 'alias torchdev="source /torch_env/bin/activate"' >> /root/.bashrc && \
@@ -93,8 +95,8 @@ RUN pip3 install --no-cache-dir transformers;\
 # RUN pip3 install --no-cache-dir --upgrade "jax[cuda12_local]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
 
 ## installing jax directly from pip
-RUN pip3 install -U "jax[cuda12]"
-# RUN pip3 install -U "jax[cuda12_local]"
+# RUN pip3 install -U "jax[cuda12]"
+RUN pip3 install -U "jax[cuda12_local]"
 
 # install the jax related tools
 RUN pip3 install flax ;\
