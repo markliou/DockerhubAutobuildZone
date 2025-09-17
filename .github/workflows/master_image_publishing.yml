@@ -40,8 +40,8 @@ jobs:
     - run: docker pull hello-world
     - run: docker pull markliou/dl-container:latest
     - run: docker tag markliou/dl-container:latest markliou/dl-container:${{ steps.date.outputs.date }}
-    - run: docker rmi markliou/dl-container:latest
-    - run: docker rmi markliou/dl-container:${{ steps.date.outputs.date }}
+    - run: docker rmi -f markliou/dl-container:latest
+    - run: docker rmi -f markliou/dl-container:${{ steps.date.outputs.date }}
     - run: docker tag hello-world markliou/dl-container:latest
     - run: docker tag hello-world markliou/dl-container:${{ steps.date.outputs.date }}
     - run: docker push markliou/dl-container:latest
