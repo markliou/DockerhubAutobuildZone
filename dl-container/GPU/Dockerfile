@@ -42,10 +42,12 @@ RUN apt-get update -y;\
     apt install git -y;\
     apt install vim -y;\
     apt install wget -y;\
-    apt install -y libsm6 libxext6 ;\
+    apt install -y libsm6 libxext6 zlib1g-dev libjpeg-dev;\
     # easy_install pip ;\
     pip3 install tqdm;\
-    pip3 install Pillow;\
+    # pip3 install Pillow;\
+    pip3 install pillow-simd;\
+    pip3 install kornia;\
     pip3 install scipy;\
     pip3 install dill;\
     # pip3 install ktext;\
@@ -75,7 +77,7 @@ RUN apt-get update -y;\
 # RUN /usr/bin/bash /root/build_torch_from_source.sh
 
 ## installing pytorch directly from pip
-# RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
+# RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu129
 ## installing pytorch in virtualenv. Using the dl-container py package as the lib base
 # RUN virtualenv --system-site-packages /torch_env;\
 #     echo 'alias torchdev="source /torch_env/bin/activate"' >> /root/.bashrc && \
