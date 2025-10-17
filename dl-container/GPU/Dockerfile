@@ -1,13 +1,13 @@
 # ARG TF_VER="2.20.0"
 # ARG TF_VER="nightly"
 # ARG NV_VER="25.01-tf2-py3"
-ARG PT_VER="2.8.0"
+ARG PT_VER="2.9.0"
 
 
 # FROM tensorflow/tensorflow:${TF_VER}-gpu
 # FROM nvcr.io/nvidia/tensorflow:${NV_VER}
 # FROM tensorflow/tensorflow@sha256:35de2ad3c8479cbf4d94b1804e2430aad16593676d6eba4f6b3216ce29aee60a
-FROM pytorch/pytorch:${PT_VER}-cuda12.9-cudnn9-devel
+FROM pytorch/pytorch:${PT_VER}-cuda13.0-cudnn9-devel
 
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -98,7 +98,7 @@ RUN pip3 install --no-cache-dir transformers;\
 
 ## installing jax directly from pip
 # RUN pip3 install -U "jax[cuda12]"
-RUN pip3 install -U "jax[cuda12_local]"
+RUN pip3 install -U "jax[cuda13_local]"
 
 # install the jax related tools
 RUN pip3 install flax ;\
