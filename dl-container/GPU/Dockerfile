@@ -65,8 +65,16 @@ RUN apt-get update -y;\
     pip3 install dvc dvclive;\
     pip3 install virtualenv;\
     # pip3 install tf-models-nightly ;\
-    pip3 install opencv-contrib-python ;\
-    pip3 install torchao
+    # pip3 install torchao
+    pip3 install opencv-contrib-python
+
+# install torchao for current cuda version
+RUN git clone https://github.com/pytorch/ao.git && \
+    cd ao && \
+    TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0+PTX" python setup.py install && \
+    cd .. && \
+    rm -fr ao
+
 
 
 
