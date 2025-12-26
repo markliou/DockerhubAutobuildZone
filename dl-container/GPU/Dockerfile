@@ -44,6 +44,7 @@ RUN apt-get update -y;\
     apt install wget -y;\
     apt install -y libsm6 libxext6 zlib1g-dev libjpeg-dev;\
     # easy_install pip ;\
+    pip3 install --no-cache-dir ninja ;\
     pip3 install tqdm;\
     # pip3 install Pillow;\
     pip3 install pillow-simd;\
@@ -65,7 +66,16 @@ RUN apt-get update -y;\
     pip3 install dvc dvclive;\
     pip3 install virtualenv;\
     # pip3 install tf-models-nightly ;\
+    # pip3 install torchao
     pip3 install opencv-contrib-python
+
+# install torchao for current cuda version
+RUN git clone https://github.com/pytorch/ao.git && \
+    cd ao && \
+    MAX_JOBS=$(nproc) TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0+PTX" python setup.py install && \
+    cd .. && \
+    rm -fr ao
+
 
 
 
