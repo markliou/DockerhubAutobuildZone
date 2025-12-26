@@ -65,7 +65,8 @@ RUN apt-get update -y;\
     pip3 install dvc dvclive;\
     pip3 install virtualenv;\
     # pip3 install tf-models-nightly ;\
-    pip3 install opencv-contrib-python
+    pip3 install opencv-contrib-python ;\
+    pip3 install torchao
 
 
 
