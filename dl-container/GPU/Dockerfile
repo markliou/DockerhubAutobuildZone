@@ -34,7 +34,7 @@ RUN echo "nameserver 1.1.1.1" | tee -a /etc/resolv.conf ;\
     apt-get install tzdata -y;\
     apt-get install python3-opencv -y --fix-missing
 
-RUN pip install --upgrade pip
+RUN pip install --upgrade pip ; pip install uv
 
 RUN apt-get update -y;\
     # apt install python3-pip -y;\
@@ -43,41 +43,37 @@ RUN apt-get update -y;\
     apt install vim -y;\
     apt install wget -y;\
     apt install -y libsm6 libxext6 zlib1g-dev libjpeg-dev;\
-    # easy_install pip ;\
-    pip3 install --no-cache-dir ninja ;\
-    pip3 install tqdm;\
+    uv pip install --system --no-cache-dir ninja ;\
+    uv pip install --system tqdm;\
     # pip3 install Pillow;\
-    pip3 install pillow-simd;\
-    pip3 install kornia;\
-    pip3 install scipy;\
-    pip3 install dill;\
+    uv pip install --system pillow-simd;\
+    uv pip install --system kornia;\
+    uv pip install --system scipy;\
+    uv pip install --system dill;\
     # pip3 install ktext;\
-    pip3 install h5py;\
-    pip3 install pandas;\
-    pip3 install grpcio;\
+    uv pip install --system h5py;\
+    uv pip install --system pandas;\
+    uv pip install --system grpcio;\
     # pip3 install Flask;\
     # pip3 install futures;\
     # pip3 install --upgrade keras;\
-    pip3 install redis;\
-    pip3 install scikit-image;\
+    uv pip install --system redis;\
+    uv pip install --system scikit-image;\
     # pip3 install tensorflow-datasets;\
     # pip3 install tensorflow-probability;\
-    pip3 install matplotlib;\
-    pip3 install dvc dvclive;\
-    pip3 install virtualenv;\
-    # pip3 install tf-models-nightly ;\
+    uv pip install --system matplotlib;\
+    uv pip install --system dvc dvclive;\
+    uv pip install --system virtualenv;\
+    uv pip install --system timm;\
     # pip3 install torchao
-    pip3 install opencv-contrib-python
+    uv pip install --system opencv-contrib-python
 
 # install torchao for current cuda version
 RUN git clone https://github.com/pytorch/ao.git && \
     cd ao && \
-    MAX_JOBS=$(nproc) TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0+PTX" python setup.py install && \
+    MAX_JOBS=2 TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0+PTX" uv pip install --system --no-build-isolation . && \
     cd .. && \
     rm -fr ao
-
-
-
 
 #####  pytroch installation #####
 # test the gpu available: torch.cuda.is_available()
@@ -96,9 +92,9 @@ RUN git clone https://github.com/pytorch/ao.git && \
 #     echo 'export LD_LIBRARY_PATH="/torch_env/lib/python3.x/site-packages/torch/lib:$LD_LIBRARY_PATH"' >> /torch_env/bin/activate
 
 ##### hugging face toolchain #####
-RUN pip3 install --no-cache-dir transformers;\
+RUN uv pip install --system --no-cache-dir transformers;\
     # pip3 install --no-cache-dir accelerate;\
-    pip3 install --no-cache-dir -U "huggingface_hub[cli]";\
+    uv pip install --system --no-cache-dir -U "huggingface_hub[cli]";\
     git config --global credential.helper store
 
 
@@ -108,11 +104,11 @@ RUN pip3 install --no-cache-dir transformers;\
 
 ## installing jax directly from pip
 # RUN pip3 install -U "jax[cuda12]"
-RUN pip3 install -U "jax[cuda13_local]"
+RUN uv pip install --system -U "jax[cuda13_local]"
 
 # install the jax related tools
-RUN pip3 install flax ;\
-    pip3 install optax
+RUN uv pip install --system flax ;\
+    uv pip install --system optax
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
