@@ -1,7 +1,7 @@
 # ARG TF_VER="2.20.0"
 # ARG TF_VER="nightly"
 # ARG NV_VER="25.01-tf2-py3"
-ARG PT_VER="2.9.1"
+ARG PT_VER="2.10.0"
 
 
 # FROM tensorflow/tensorflow:${TF_VER}-gpu
@@ -34,7 +34,7 @@ RUN echo "nameserver 1.1.1.1" | tee -a /etc/resolv.conf ;\
     apt-get install tzdata -y;\
     apt-get install python3-opencv -y --fix-missing
 
-RUN pip install --upgrade pip
+RUN pip install --upgrade --break-system-packages pip
 
 RUN apt-get update -y;\
     # apt install python3-pip -y;\
@@ -44,30 +44,30 @@ RUN apt-get update -y;\
     apt install wget -y;\
     apt install -y libsm6 libxext6 zlib1g-dev libjpeg-dev;\
     # easy_install pip ;\
-    pip3 install --no-cache-dir ninja ;\
-    pip3 install tqdm;\
+    pip3 install --no-cache-dir ninja --break-system-packages;\
+    pip3 install tqdm --break-system-packages;\
     # pip3 install Pillow;\
-    pip3 install pillow-simd;\
-    pip3 install kornia;\
-    pip3 install scipy;\
-    pip3 install dill;\
+    pip3 install pillow-simd --break-system-packages;\
+    pip3 install kornia --break-system-packages;\
+    pip3 install scipy --break-system-packages;\
+    pip3 install dill --break-system-packages;\
     # pip3 install ktext;\
-    pip3 install h5py;\
-    pip3 install pandas;\
-    pip3 install grpcio;\
+    pip3 install h5py --break-system-packages;\
+    pip3 install pandas --break-system-packages;\
+    pip3 install grpcio --break-system-packages;\
     # pip3 install Flask;\
     # pip3 install futures;\
     # pip3 install --upgrade keras;\
-    pip3 install redis;\
-    pip3 install scikit-image;\
+    pip3 install redis --break-system-packages;\
+    pip3 install scikit-image --break-system-packages;\
     # pip3 install tensorflow-datasets;\
     # pip3 install tensorflow-probability;\
-    pip3 install matplotlib;\
-    pip3 install dvc dvclive;\
-    pip3 install virtualenv;\
+    pip3 install matplotlib --break-system-packages;\
+    pip3 install dvc dvclive --break-system-packages;\
+    pip3 install virtualenv --break-system-packages;\
     # pip3 install tf-models-nightly ;\
     # pip3 install torchao
-    pip3 install opencv-contrib-python
+    pip3 install opencv-contrib-python --break-system-packages
 
 # install torchao for current cuda version
 RUN git clone https://github.com/pytorch/ao.git && \
@@ -75,9 +75,6 @@ RUN git clone https://github.com/pytorch/ao.git && \
     MAX_JOBS=$(nproc) TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0+PTX" python setup.py install && \
     cd .. && \
     rm -fr ao
-
-
-
 
 #####  pytroch installation #####
 # test the gpu available: torch.cuda.is_available()
@@ -96,9 +93,9 @@ RUN git clone https://github.com/pytorch/ao.git && \
 #     echo 'export LD_LIBRARY_PATH="/torch_env/lib/python3.x/site-packages/torch/lib:$LD_LIBRARY_PATH"' >> /torch_env/bin/activate
 
 ##### hugging face toolchain #####
-RUN pip3 install --no-cache-dir transformers;\
+RUN pip3 install --no-cache-dir transformers --break-system-packages;\
     # pip3 install --no-cache-dir accelerate;\
-    pip3 install --no-cache-dir -U "huggingface_hub[cli]";\
+    pip3 install --no-cache-dir -U "huggingface_hub[cli]" --break-system-packages;\
     git config --global credential.helper store
 
 
@@ -108,11 +105,11 @@ RUN pip3 install --no-cache-dir transformers;\
 
 ## installing jax directly from pip
 # RUN pip3 install -U "jax[cuda12]"
-RUN pip3 install -U "jax[cuda13_local]"
+RUN pip3 install -U "jax[cuda13_local]" --break-system-packages
 
 # install the jax related tools
-RUN pip3 install flax ;\
-    pip3 install optax
+RUN pip3 install flax --break-system-packages;\
+    pip3 install optax --break-system-packages
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
