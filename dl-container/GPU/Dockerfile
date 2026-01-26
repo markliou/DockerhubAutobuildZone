@@ -1,7 +1,7 @@
 # ARG TF_VER="2.20.0"
 # ARG TF_VER="nightly"
 # ARG NV_VER="25.01-tf2-py3"
-ARG PT_VER="2.9.1"
+ARG PT_VER="2.10.0"
 
 
 # FROM tensorflow/tensorflow:${TF_VER}-gpu
@@ -34,7 +34,7 @@ RUN echo "nameserver 1.1.1.1" | tee -a /etc/resolv.conf ;\
     apt-get install tzdata -y;\
     apt-get install python3-opencv -y --fix-missing
 
-RUN pip install --upgrade pip ; pip install uv
+RUN pip install --upgrade pip --break-system-packages; pip install uv --break-system-packages
 
 RUN apt-get update -y;\
     # apt install python3-pip -y;\
@@ -43,35 +43,35 @@ RUN apt-get update -y;\
     apt install vim -y;\
     apt install wget -y;\
     apt install -y libsm6 libxext6 zlib1g-dev libjpeg-dev;\
-    uv pip install --system --no-cache-dir ninja ;\
-    uv pip install --system tqdm;\
+    uv pip install --system --no-cache-dir ninja --break-system-packages;\
+    uv pip install --system tqdm --break-system-packages;\
     # pip3 install Pillow;\
-    uv pip install --system pillow-simd;\
-    uv pip install --system kornia;\
-    uv pip install --system scipy;\
-    uv pip install --system dill;\
+    uv pip install --system pillow-simd --break-system-packages;\
+    uv pip install --system kornia --break-system-packages;\
+    uv pip install --system scipy --break-system-packages;\
+    uv pip install --system dill --break-system-packages;\
     # pip3 install ktext;\
-    uv pip install --system h5py;\
-    uv pip install --system pandas;\
-    uv pip install --system grpcio;\
+    uv pip install --system h5py --break-system-packages;\
+    uv pip install --system pandas --break-system-packages;\
+    uv pip install --system grpcio --break-system-packages;\
     # pip3 install Flask;\
     # pip3 install futures;\
     # pip3 install --upgrade keras;\
-    uv pip install --system redis;\
-    uv pip install --system scikit-image;\
+    uv pip install --system redis --break-system-packages;\
+    uv pip install --system scikit-image --break-system-packages;\
     # pip3 install tensorflow-datasets;\
     # pip3 install tensorflow-probability;\
-    uv pip install --system matplotlib;\
-    uv pip install --system dvc dvclive;\
-    uv pip install --system virtualenv;\
-    uv pip install --system timm;\
+    uv pip install --system matplotlib --break-system-packages;\
+    uv pip install --system dvc dvclive --break-system-packages;\
+    uv pip install --system virtualenv --break-system-packages;\
+    uv pip install --system timm --break-system-packages;\
     # pip3 install torchao
-    uv pip install --system opencv-contrib-python
+    uv pip install --system opencv-contrib-python --break-system-packages
 
 # install torchao for current cuda version
 RUN git clone https://github.com/pytorch/ao.git && \
     cd ao && \
-    MAX_JOBS=2 TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0+PTX" uv pip install --system --no-build-isolation . && \
+    MAX_JOBS=2 TORCH_CUDA_ARCH_LIST="8.0 8.6 8.9 9.0 10.0+PTX" uv pip install --break-system-packages --system --no-build-isolation . && \
     cd .. && \
     rm -fr ao
 
@@ -92,9 +92,9 @@ RUN git clone https://github.com/pytorch/ao.git && \
 #     echo 'export LD_LIBRARY_PATH="/torch_env/lib/python3.x/site-packages/torch/lib:$LD_LIBRARY_PATH"' >> /torch_env/bin/activate
 
 ##### hugging face toolchain #####
-RUN uv pip install --system --no-cache-dir transformers;\
+RUN uv pip install --system --no-cache-dir transformers --break-system-packages;\
     # pip3 install --no-cache-dir accelerate;\
-    uv pip install --system --no-cache-dir -U "huggingface_hub[cli]";\
+    uv pip install --system --no-cache-dir -U "huggingface_hub[cli]" --break-system-packages;\
     git config --global credential.helper store
 
 
@@ -104,11 +104,11 @@ RUN uv pip install --system --no-cache-dir transformers;\
 
 ## installing jax directly from pip
 # RUN pip3 install -U "jax[cuda12]"
-RUN uv pip install --system -U "jax[cuda13_local]"
+RUN uv pip install --system -U "jax[cuda13_local]" --break-system-packages
 
 # install the jax related tools
-RUN uv pip install --system flax ;\
-    uv pip install --system optax
+RUN uv pip install --system flax --break-system-packages;\
+    uv pip install --system optax --break-system-packages
 
 # # fix the ldconfig promblem
 # RUN mv /usr/local/lib/libtbbmalloc_proxy.so.2 /usr/local/lib/libtbbmalloc_proxy.so.2.real ;\
