@@ -1,7 +1,7 @@
 # ARG TF_VER="2.20.0"
 # ARG TF_VER="nightly"
 # ARG NV_VER="25.01-tf2-py3"
-ARG PT_VER="2.11.0"
+ARG PT_VER="2.12.0"
 
 
 # FROM tensorflow/tensorflow:${TF_VER}-gpu
