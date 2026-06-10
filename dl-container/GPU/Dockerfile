@@ -1,13 +1,13 @@
 # ARG TF_VER="2.20.0"
 # ARG TF_VER="nightly"
 # ARG NV_VER="25.01-tf2-py3"
-ARG PT_VER="2.12.0"
+ARG PT_VER="2.12.0" # pytorch version
 
 
 # FROM tensorflow/tensorflow:${TF_VER}-gpu
 # FROM nvcr.io/nvidia/tensorflow:${NV_VER}
 # FROM tensorflow/tensorflow@sha256:35de2ad3c8479cbf4d94b1804e2430aad16593676d6eba4f6b3216ce29aee60a
-FROM pytorch/pytorch:${PT_VER}-cuda13.0-cudnn9-devel
+FROM pytorch/pytorch:${PT_VER}-cuda13.2-cudnn9-devel
 
 
 ENV DEBIAN_FRONTEND=noninteractive
