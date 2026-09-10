@@ -1,0 +1,34 @@
+name: pr_gpu_test
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - master
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-gpu-test-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gpu-image-test:
+    runs-on:
+      - hope
+    env:
+      TEST_IMAGE: dl-container-pr:${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v4
+
+      - name: build GPU image
+        run: docker build --pull -t "$TEST_IMAGE" ./dl-container/GPU
+
+      - name: run GPU smoke test
+        run: docker run --rm --gpus all "$TEST_IMAGE" gpu_test
+
+      - name: cleanup test image
+        if: always()
+        run: docker rmi -f "$TEST_IMAGE" || true
